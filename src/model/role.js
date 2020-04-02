@@ -5,9 +5,9 @@ const sequelize = new Sequelize({
     storage: "db.mariadb"
 });
 
-// ############# PERMS ############# ##
-// ? Define of roles table
-const rolesModel = {
+// ############# Roles ############# ##
+// ? Define roles model
+const roleModel = {
     role_id: {
         type: DataTypes.UUIDV4,
         defaultValue: DataTypes.UUIDV4,
@@ -30,16 +30,17 @@ const perms = [
     'create_project'
 ];
 
-// ? Insert permission into roles tables
+// ? Insert permission into roles model
 perms.forEach(perm => {
-    rolesModel[perm] = {
+    roleModel[perm] = {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         unique: true
     };
 });
 
-const roles = sequelize.define('roles', rolesModel);
+// ? Create roles table from model
+const role = sequelize.define('role', roleModel);
 // ################################ ##
 
-module.exports = {roles};
+module.exports = {role};

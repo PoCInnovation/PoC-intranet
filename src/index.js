@@ -1,1 +1,1 @@
-const role = require('./model/model');
+const role = require('./model/role');

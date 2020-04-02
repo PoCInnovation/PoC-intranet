@@ -11,7 +11,7 @@ PoC's intranet
     
 - Roles 
     - role_id
-    - name
+    - role_name
     - admin
     - add role
     - recommend
@@ -21,7 +21,7 @@ PoC's intranet
     
 - Project
     - project_id
-    - name
+    - project_name
     - status
     - link airtable
     - link github

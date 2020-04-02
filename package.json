@@ -1,0 +1,24 @@
+{
+  "name": "poc-intranet",
+  "version": "1.0.0",
+  "description": "PoC's intranet",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PoCFrance/PoC-intranet.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PoCFrance/PoC-intranet/issues"
+  },
+  "homepage": "https://github.com/PoCFrance/PoC-intranet#readme",
+  "dependencies": {
+    "mariadb": "^2.3.1",
+    "monmodule": "^0.1.0"
+  }
+}

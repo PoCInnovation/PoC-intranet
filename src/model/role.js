@@ -48,7 +48,6 @@ perms.forEach(perm => {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
         allowNull: true,
-        unique: true
     };
 });
 
@@ -73,7 +72,7 @@ async function createRole(name) {
 
 async function startServer() {
     try  {
-        await sequelize.drop(role);
+    //    await sequelize.drop(role);
         await sequelize.sync();
     } catch(e) {
         console.log(e);

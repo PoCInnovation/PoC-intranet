@@ -6,8 +6,8 @@ const {UUID} = require('uuidv4')
 
 
 /*const pool = mariadb.createPool({
-    host: 'localhost', 
-    user:'vincent', 
+    host: 'localhost',
+    user:'vincent',
     password: 'chauveau',
     name: 'intra'
 });*/
@@ -20,6 +20,12 @@ const sequelize = new Sequelize('intra', 'vincent', 'chauveau', {
 // ############# Roles ############# ##
 // ? Define roles model
 const roleModel = {
+    role_id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        allowNull: true,
+        primaryKey: true
+    },
     role_name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -37,14 +43,14 @@ const perms = [
 ];
 
 // ? Insert permission into roles model
-/*perms.forEach(perm => {
+perms.forEach(perm => {
     roleModel[perm] = {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
         allowNull: true,
         unique: true
     };
-});*/
+});
 
 // ? Create roles table from model
 const role = sequelize.define('roles', roleModel);
@@ -56,7 +62,7 @@ async function createRole(name) {
     console.log(name);
     let right = {admin: false, recommend: false, write_article: false, add_member: false, create_project: false}
     if (name) {
-        try { 
+        try {
             await role.create({role_name: name});
         } catch(e) {
             console.log(e);
@@ -67,6 +73,7 @@ async function createRole(name) {
 
 async function startServer() {
     try  {
+        await sequelize.drop(role);
         await sequelize.sync();
     } catch(e) {
         console.log(e);
@@ -82,7 +89,10 @@ async function startServer() {
     });
     app.post('/create_role', async (req, res) => {
             try {
+            console.log(req.body.name);
             await createRole(req.body.name);
+            let test = await role.findAll();
+            console.log(test);
             } catch(e) {
                 console.log(e);
             }

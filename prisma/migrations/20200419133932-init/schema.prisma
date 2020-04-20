@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url = "***"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+
+// Project
+enum Status {
+    Todo
+    InProgress
+    Done
+}
+
+model Project {
+    id       Int     @default(uuid()) @id
+    name     String
+    status   Status
+    airtable String?
+    github   String?
+    user     User    @relation(fields: [userId], references: [id])
+    userId   Int
+}
+
+model Roles {
+    id          Int     @default(uuid()) @id
+    name        String  @unique
+    admin       Boolean @default(false)
+    add_role    Boolean @default(false)
+    recommend   Boolean @default(false)
+    write       Boolean @default(false)
+    add_member  Boolean @default(false)
+    create_pro  Boolean @default(false)
+    user        User    @relation(fields: [userId], references: [id])
+    userId      Int
+}
+
+// User model
+model User {
+    id       Int     @default(uuid()) @id
+    mail     String  @unique
+    token    String?  @unique
+    roles    Roles?
+    project  Project[]
+}

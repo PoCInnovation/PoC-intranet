@@ -1,0 +1,29 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "UpdateField",
+      "model": "Project",
+      "field": "airtable",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Project",
+      "field": "github",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "User",
+      "field": "token",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "User",
+      "field": "roles",
+      "arity": "Optional"
+    }
+  ]
+}

@@ -1,5 +1,7 @@
-import { findAllRoles, findRoleByName, createRoles,
-    updateRolePerm, updateRoleName, deleteRole, Perms} from "../models/roles";
+import {
+    findAllRoles, findRoleByName, createRoles,
+    updateRolePerm, updateRoleName, deleteRole, Perms
+} from "../models/roles";
 
 interface TestRole {
     perms: Perms;
@@ -43,7 +45,7 @@ async function testUpdateRolePerm(role: TestRole) {
 
     role.perms.write = false;
     if (modify != null && modify.id != null)
-        result = await updateRolePerm(modify.id, role.perms)
+        result = await updateRolePerm(modify.id, role.perms);
     if (result == null || result.write != role.perms.write) {
         console.error("Error on update perms");
         return 1;
@@ -57,13 +59,14 @@ async function testUpdateRoleName(role: TestRole) {
 
     role.name = "NewName";
     if (modify != null && modify.id != null)
-        result = await updateRoleName(modify.id, role.name)
+        result = await updateRoleName(modify.id, role.name);
     if (result == null || result.name != role.name) {
         console.error("Error on update name");
         return 1;
     }
     return 0;
 }
+
 // ? ----------------------------------------------------------- ? //
 // ? Clean my Db
 async function cleanDB() {
@@ -73,14 +76,18 @@ async function cleanDB() {
         await deleteRole(element.id)
             .catch(() => {
                 console.error("Error in clean db");
-                return 1 });
+                return 1;
+            });
     }
     return 0;
 }
+
 // ? Init A role
 async function initRole(turn: number) {
-    let perms: Perms = { admin: false, add_role: true, recommend: true,
-                        write: true, add_member: true, create_pro: true };
+    let perms: Perms = {
+        admin: false, add_role: true, recommend: true,
+        write: true, add_member: true, create_pro: true
+    };
     let name: string = (turn == 0) ? "name1" : "name2";
     if (turn == 1)
         perms.admin = true;

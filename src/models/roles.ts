@@ -3,12 +3,12 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 interface Perms {
-    admin:         boolean
-    add_role:      boolean
-    recommend:     boolean
-    write:         boolean
-    add_member:    boolean
-    create_pro:    boolean
+    admin: boolean
+    add_role: boolean
+    recommend: boolean
+    write: boolean
+    add_member: boolean
+    create_pro: boolean
 }
 
 // ! -----------  Read  -----------
@@ -37,7 +37,7 @@ async function createRoles(perms: Perms, name: string) {
             add_member: perms.add_member,
             create_pro: perms.create_pro
         }
-    })
+    });
 }
 
 // ! ----------  Update  ----------

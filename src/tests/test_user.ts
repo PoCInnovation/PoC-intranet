@@ -3,7 +3,7 @@ import { findAllUser, findUserIdByMail, createUser, deleteUser, UserInfo } from 
 
 // ? --------------------------- TEST --------------------------- ? //
 async function testCreation(newUser: UserInfo) {
-    let result: User = await createUser(newUser)
+    let result: User = await createUser(newUser);
 
     if (newUser.mail != result.mail || newUser.token != result.token) {
         console.error("Error on Creation");
@@ -12,8 +12,7 @@ async function testCreation(newUser: UserInfo) {
     return 0;
 }
 
-async function testFindUserIdByMail(mail: string)
-{
+async function testFindUserIdByMail(mail: string) {
     let result = await findUserIdByMail(mail);
 
     if (result == null || mail != result.mail) {
@@ -36,6 +35,7 @@ async function testFindAllUser(newUser: UserInfo, newUser2: UserInfo) {
     }
     return 0;
 }
+
 // ? ----------------------------------------------------------- ? //
 
 // ? Clean my Db
@@ -47,18 +47,17 @@ async function clearDB(newUser: UserInfo, newUser2: UserInfo) {
         await deleteUser(user1?.id);
         await deleteUser(user2.id);
         return 0;
-    }
-    else
+    } else
         console.error("Error on cleaning of the DB");
-        return 1;
+    return 1;
 }
 
 async function testUserModel() {
     let score: number = 0;
     let newUser: UserInfo = { mail: "test4", token: "token4" };
-    let newUser2: UserInfo = { mail: "test5", token: "token5"};
+    let newUser2: UserInfo = { mail: "test5", token: "token5" };
 
-    console.log("---- TEST USER ----")
+    console.log("---- TEST USER ----");
     score += await testCreation(newUser);
     score += await testCreation(newUser2);
     score += await testFindUserIdByMail(newUser.mail);
@@ -66,7 +65,7 @@ async function testUserModel() {
     score += await clearDB(newUser, newUser2);
 
     console.log(score == 0 ? "\nEverything worked good" : "\nError find");
-    console.log("---- DB ----")
+    console.log("---- DB ----");
     console.log(await findAllUser());
 }
 

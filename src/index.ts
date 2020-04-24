@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client"
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -12,6 +12,6 @@ main()
         throw e;
     })
     .finally(async () => {
-        await prisma.disconnect()
+        await prisma.disconnect();
         console.log("Disconnect");
     });

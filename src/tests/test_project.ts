@@ -1,15 +1,17 @@
-import { Project } from "@prisma/client";
-import { findAllProject, findProjectByName, createProject,
+import {Project} from "@prisma/client";
+import {
+    findAllProject, findProjectByName, createProject,
     updateProjectAirtable, updateProjectGithub, updateProjectName,
-    updateProjectStatus, deleteProject } from "../models/project";
+    updateProjectStatus, deleteProject
+} from "../models/project";
 
 // ? --------------------------- TEST --------------------------- ? //
 async function testCreation(newProject: Project) {
-    let result: Project = await createProject(newProject)
+    let result: Project = await createProject(newProject);
 
     if (result.name != newProject.name && result.status != newProject.status &&
         result.github != newProject.github && result.airtable != newProject.airtable) {
-        console.error("Error on creation")
+        console.error("Error on creation");
         return 1;
     }
     return 0;
@@ -47,7 +49,7 @@ async function testUpdateProjectAirtable(project: Project) {
     let result;
 
     if (value != null && value.id != null)
-         result = await updateProjectAirtable(value.id, "new")
+        result = await updateProjectAirtable(value.id, "new");
     if (result == null || result.airtable == project.airtable) {
         console.error("Error on project airtable");
         return 1;
@@ -60,7 +62,7 @@ async function testUpdateProjectName(project: Project) {
     let result;
 
     if (value != null && value.id != null)
-        result = await updateProjectName(value.id, "NewName")
+        result = await updateProjectName(value.id, "NewName");
     if (result == null || result.name == project.name) {
         console.error("Error on update Name");
         return 1;
@@ -82,17 +84,18 @@ async function testUpdateProjectGithub(project: Project) {
 }
 
 async function testUpdateProjectStatus(project: Project) {
-    let value = await findProjectByName(project.name)
+    let value = await findProjectByName(project.name);
     let result;
 
     if (value != null && value.id != null)
-        result = await updateProjectStatus(value.id, "Done")
+        result = await updateProjectStatus(value.id, "Done");
     if (result == null || result.status == project.status) {
         console.error("Error on update status");
         return 1;
     }
     return 0;
 }
+
 // ? ----------------------------------------------------------- ? //
 
 // ? Clean my Db
@@ -111,10 +114,10 @@ async function cleanDB(newProject1: Project) {
 
 async function testProjectModel() {
     let score: number = 0;
-    let project1: Project = { id: "", name: "test", airtable: "airtable", github: "github", status: "InProgress"};
-    let project2: Project = { id: "", name: "test2", airtable: "airtable2", github: "githu2", status: "InProgress"};
+    let project1: Project = { id: "", name: "test", airtable: "airtable", github: "github", status: "InProgress" };
+    let project2: Project = { id: "", name: "test2", airtable: "airtable2", github: "githu2", status: "InProgress" };
 
-    console.log("---- TEST USER ----")
+    console.log("---- TEST USER ----");
     score += await testCreation(project1);
     score += await testCreation(project2);
     score += await testFindProjectByName("test");
@@ -124,9 +127,10 @@ async function testProjectModel() {
     score += await testUpdateProjectGithub(project1);
     score += await testUpdateProjectStatus(project1);
     score += await cleanDB(project1);
+
     console.log(score == 0 ? "\nEverything worked good" : "\nError find");
-    console.log("---- DB ----")
+    console.log("---- DB ----");
     console.log(await findAllProject());
 }
 
-export { testProjectModel };
+export {testProjectModel};

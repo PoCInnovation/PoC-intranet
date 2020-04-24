@@ -1,6 +1,11 @@
-import { PrismaClient, Role } from "@prisma/client"
+import { PrismaClient } from "@prisma/client"
 
 const prisma = new PrismaClient();
+
+interface UserInfo {
+    mail: string
+    token?: string
+}
 
 // ! -----------  Read  -----------
 async function findAllUser() {
@@ -22,11 +27,6 @@ async function findUserIdByMail(mail: string) {
     });
 }
 
-interface UserInfo {
-    mail: string
-    token?: string
-}
-
 // ! ----------- Create -----------
 async function createUser(user: UserInfo) {
     return prisma.user.create({
@@ -40,11 +40,11 @@ async function createUser(user: UserInfo) {
 // ! ----------- Delete -----------
 async function deleteUser(id: string) {
     return prisma.user.delete({
-        where: {id}
+        where: { id }
     });
 }
 
-// ! ----------- Update -----------
+// ! ----------- Link -----------
 async function linkUserToRole(role: string, id: string)
 {
     return prisma.user.update({
@@ -54,4 +54,24 @@ async function linkUserToRole(role: string, id: string)
         }
     });
 }
-export {findAllUser, findUserIdByMail, createUser, deleteUser, linkUserToRole};
+
+async function linkUserToProject(project: string, id: string)
+{
+    return prisma.user.update({
+        where: {id},
+        data: {
+            projects: { connect: { name: project } }
+        }
+    });
+}
+
+// * Export
+export {
+    findAllUser,
+    findUserIdByMail,
+    createUser,
+    deleteUser,
+    linkUserToRole,
+    linkUserToProject,
+    UserInfo
+};

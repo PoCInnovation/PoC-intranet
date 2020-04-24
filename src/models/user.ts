@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client"
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -11,15 +11,15 @@ interface UserInfo {
 async function findAllUser() {
     return await prisma.user.findMany({
         include: {
-           roles: true,
-           projects: true,
+            roles: true,
+            projects: true,
         }
     });
 }
 
 async function findUserIdByMail(mail: string) {
     return prisma.user.findOne({
-        where: {mail: mail},
+        where: { mail: mail },
         include: {
             roles: true,
             projects: true,
@@ -45,20 +45,18 @@ async function deleteUser(id: string) {
 }
 
 // ! ----------- Link -----------
-async function linkUserToRole(role: string, id: string)
-{
+async function linkUserToRole(role: string, id: string) {
     return prisma.user.update({
-        where: {id},
+        where: { id },
         data: {
             roles: { connect: { name: role } }
         }
     });
 }
 
-async function linkUserToProject(project: string, id: string)
-{
+async function linkUserToProject(project: string, id: string) {
     return prisma.user.update({
-        where: {id},
+        where: { id },
         data: {
             projects: { connect: { name: project } }
         }

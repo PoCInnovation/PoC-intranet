@@ -1,9 +1,10 @@
 import { PrismaClient } from "@prisma/client";
+import { api } from "./view/routes.js";
 
 const prisma = new PrismaClient();
 
 async function main() {
-    console.log("Index: run test to see what append");
+    await api();
 }
 
 main()
@@ -11,7 +12,7 @@ main()
         console.log(e);
         throw e;
     })
-    .finally(async () => {
+    .then(async () => {
         await prisma.disconnect();
         console.log("Disconnect");
     });

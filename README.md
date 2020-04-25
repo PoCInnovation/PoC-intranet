@@ -8,6 +8,8 @@ PoC's intranet
     - user_id
     - mail
     - token_office
+    - roles[]
+    - projects[]
     
 - Roles 
     - role_id
@@ -26,14 +28,6 @@ PoC's intranet
     - link airtable
     - link github
     
- - FK_user_project
-    - fk_user_id
-    - fk_project_id
-
-- FK_user_roles
-    - fk_user_id
-    - fk_role_id
-
 ## Routes
 
 ### User
@@ -156,3 +150,12 @@ Body:
    
     - project_name
 
+> User must be login
+
+### Link
+
+Method PUT
+Route: `/user/update/project`
+
+Body:
+    

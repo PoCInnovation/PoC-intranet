@@ -3,7 +3,7 @@ import {
     findAllProject, findProjectByName, createProject,
     updateProjectAirtable, updateProjectGithub, updateProjectName,
     updateProjectStatus, deleteProject
-} from "../models/project";
+} from "../models/model_project";
 
 // ? --------------------------- TEST --------------------------- ? //
 async function testCreation(newProject: Project) {

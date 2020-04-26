@@ -1,5 +1,5 @@
-import { createRoles, deleteRole, findAllRoles, updateRoleName } from "../models/roles";
-import { createProject, deleteProject, findAllProject, updateProjectName } from "../models/project";
+import { createRoles, deleteRole, findAllRoles, updateRoleName } from "../models/model_roles";
+import { createProject, deleteProject, findAllProject, updateProjectName } from "../models/model_project";
 import {
     createUser,
     deleteUser,
@@ -7,7 +7,7 @@ import {
     linkUserToProject,
     findAllUser,
     findUserIdByMail
-} from "../models/user";
+} from "../models/model_user";
 
 // ? --------------------------- TEST --------------------------- ? //
 async function testLinkUserToProject() {
@@ -158,4 +158,4 @@ async function testLinking() {
     console.log(await findAllProject());
 }
 
-export { testLinking };
+export { testLinking, cleanDB };

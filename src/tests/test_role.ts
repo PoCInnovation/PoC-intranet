@@ -1,7 +1,7 @@
 import {
     findAllRoles, findRoleByName, createRoles,
     updateRolePerm, updateRoleName, deleteRole, Perms
-} from "../models/roles";
+} from "../models/model_roles";
 
 interface TestRole {
     perms: Perms;

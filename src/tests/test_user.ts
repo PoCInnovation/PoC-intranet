@@ -1,5 +1,5 @@
 import { User } from "@prisma/client";
-import { findAllUser, findUserIdByMail, createUser, deleteUser, UserInfo } from "../models/user";
+import { findAllUser, findUserIdByMail, createUser, deleteUser, UserInfo } from "../models/model_user";
 
 // ? --------------------------- TEST --------------------------- ? //
 async function testCreation(newUser: UserInfo) {

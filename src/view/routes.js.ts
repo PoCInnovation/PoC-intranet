@@ -1,10 +1,13 @@
 import express from "express";
 import bodyParser from "body-parser";
+
+// ? Controller
 import { isBodyValid } from "../controllers/validation";
-import { userSchema } from "../controllers/schema_joi";
+import { userSchema, idSchema } from "../controllers/schema_joi";
+import { addUserToDb, getAllUserFromDb, deleteUserFromDb } from "../controllers/controller_user";
+
 
 const app = express();
-
 app.use(bodyParser.json());
 
 async function initServer() {
@@ -14,16 +17,52 @@ async function initServer() {
 
 async function api() {
     await initServer();
-    app.get('/test', (req, res) => {
+    app.get('/test', (req, res) => { // ! To remove later
         console.log("Find request");
         res.status(200);
-        res.send('Server work, listen on post 8080');
+        res.send('Server ready');
     });
 
+    // ? ------------------------- USER ACTIONS ------------------------- ? //
     app.post('/user/create', isBodyValid(userSchema), async (req, res) => {
-        console.log(req.body);
-        res.send("User find");
+        await addUserToDb(req.body)
+            .then(() => {
+                res.status(200);
+                res.send("User created");
+            })
+            .catch(() => {
+                res.status(400);
+                res.send("Operation failed");
+            });
     });
+
+    app.get('/users', async (req, res) => {
+        await getAllUserFromDb()
+            .then(users => {
+                res.status(200);
+                res.send(users);
+            }).catch(() => {
+                res.status(400);
+                res.send("Operation failed");
+            });
+    });
+
+    app.delete('/user/delete', isBodyValid(idSchema), async (req, res) => {
+        await deleteUserFromDb(req.body.id)
+            .then(() => {
+                res.status(200);
+                res.send("User deleted");
+            })
+            .catch(() => {
+                res.status(400);
+                res.send("Operation failed");
+            });
+    });
+    // ? ---------------------------------------------------------------- ? //
+
+    // ? ------------------------- ROLES ACTIONS ------------------------ ? //
+
+    // ? ---------------------------------------------------------------- ? //
 }
 
 export { api };

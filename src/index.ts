@@ -14,5 +14,4 @@ main()
     })
     .then(async () => {
         await prisma.disconnect();
-        console.log("Disconnect");
     });

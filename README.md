@@ -11,7 +11,6 @@ sudo docker-compose up -d --build
 
 ```sh
 npm install
-npx prisma migrate save --experimental
 npx prisma migrate up --experimental
 npx prisma generate
 npm test

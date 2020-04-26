@@ -22,4 +22,8 @@ const roleSchema = Joi.object().keys({
     create_project: Joi.boolean().required()
 });
 
-export { userSchema, projectSchema, roleSchema };
+const idSchema = Joi.object().keys({
+   id: Joi.string().required()
+});
+
+export { userSchema, projectSchema, roleSchema, idSchema };

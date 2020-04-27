@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { api } from "./view/routes.js";
+import { api } from "./view/routes.js.js";
 
 const prisma = new PrismaClient();
 

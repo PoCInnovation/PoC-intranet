@@ -16,7 +16,7 @@ const User = objectType({
     },
 });
 
-const Roles = objectType({
+const Role = objectType({
     name: 'Role',
     definition(t) {
         t.model.id();
@@ -31,7 +31,7 @@ const Roles = objectType({
     },
 });
 
-const Projects = objectType({
+const Project = objectType({
     name: 'Project',
     definition(t) {
         t.model.id();
@@ -58,7 +58,21 @@ const Query = objectType({
             args: { searchRole: stringArg() },
             resolve: (_, { searchRole }, ctx) => {
                 return ctx.prisma.user.findMany({
-                    where: { roles: { name: searchRole } }
+                    where: {
+                        roles: { every: { name: searchRole } }
+                    }
+                });
+            }
+        });
+
+        t.list.field('GetUsersByProjects', {
+            type: 'User',
+            args: { searchProject: stringArg() },
+            resolve: (_, { searchProject }, ctx) => {
+                return ctx.prisma.user.findMany({
+                    where: {
+                        projects: { every: { name: searchProject } }
+                    }
                 });
             }
         });
@@ -68,27 +82,51 @@ const Query = objectType({
 const Mutation = objectType({
     name: 'Mutation',
     definition(t) {
+        // ? User crud
         t.crud.createOneUser({ alias: 'createUser' });
+        t.crud.updateOneUser({ alias: 'updateUser' });
+        t.crud.deleteOneUser({ alias: 'deleteUser' });
+
+        // ? Role crud
         t.crud.createOneRole({ alias: 'createRole' });
+        t.crud.updateOneRole({ alias: 'updateUser' });
+        t.crud.deleteOneRole({ alias: 'deleteRole' });
+
+        // ? Project crud
         t.crud.createOneProject({ alias: 'createProject' });
+        t.crud.updateOneProject({ alias: 'updateProject' });
+        t.crud.deleteOneProject({ alias: 'deleteProject' });
 
         t.list.field('LinkUserToRole', {
             type: 'User',
             args: { userId: stringArg({ nullable: false }), roleId: stringArg({ nullable: false }) },
-            resolve: (_, { userId, roleId }, ctx) => {
-                return ctx.prisma.user.update({
+            resolve: async (_, { userId, roleId }, ctx) => {
+                return [await ctx.prisma.user.update({
                     where: { id: userId },
                     data: {
                         roles: { connect: { id: roleId } }
                     }
-                });
+                })];
+            }
+        });
+
+        t.list.field('LinkUserToProject', {
+            type: 'User',
+            args: { userId: stringArg({ nullable: false }), projectId: stringArg({ nullable: false }) },
+            resolve: async (_, { userId, projectId }, ctx) => {
+                return [await ctx.prisma.user.update({
+                    where: { id: userId },
+                    data: {
+                        projects: { connect: { id: projectId } }
+                    }
+                })];
             }
         });
     }
 });
 
 export const schema = makeSchema({
-    types: [Query, Mutation, Projects, User, Roles],
+    types: [Query, Mutation, Project, User, Role],
     plugins: [nexusPrismaPlugin()],
     outputs: {
         schema: __dirname + '/../schema.graphql',

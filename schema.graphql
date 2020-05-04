@@ -6,7 +6,32 @@ type Mutation {
   createProject(data: ProjectCreateInput!): Project!
   createRole(data: RoleCreateInput!): Role!
   createUser(data: UserCreateInput!): User!
+  deleteProject(where: ProjectWhereUniqueInput!): Project
+  deleteRole(where: RoleWhereUniqueInput!): Role
+  deleteUser(where: UserWhereUniqueInput!): User
+  LinkUserToProject(projectId: String!, userId: String!): [User!]!
   LinkUserToRole(roleId: String!, userId: String!): [User!]!
+  updateProject(data: ProjectUpdateInput!, where: ProjectWhereUniqueInput!): Project
+  updateUser(data: RoleUpdateInput!, where: RoleWhereUniqueInput!): Role
+}
+
+input NullableBooleanFilter {
+  equals: Boolean
+  not: Boolean
+}
+
+input NullableStringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: String
+  notIn: [String!]
+  startsWith: String
 }
 
 type Project {
@@ -40,12 +65,96 @@ input ProjectCreateWithoutUsersInput {
   status: Status!
 }
 
+input ProjectFilter {
+  every: ProjectWhereInput
+  none: ProjectWhereInput
+  some: ProjectWhereInput
+}
+
+input ProjectScalarWhereInput {
+  airtable: NullableStringFilter
+  AND: [ProjectScalarWhereInput!]
+  github: NullableStringFilter
+  id: UUIDFilter
+  name: StringFilter
+  NOT: [ProjectScalarWhereInput!]
+  OR: [ProjectScalarWhereInput!]
+  status: Status
+  users: UserFilter
+}
+
+input ProjectUpdateInput {
+  airtable: String
+  github: String
+  id: String
+  name: String
+  status: Status
+  users: UserUpdateManyWithoutProjectsInput
+}
+
+input ProjectUpdateManyDataInput {
+  airtable: String
+  github: String
+  id: String
+  name: String
+  status: Status
+}
+
+input ProjectUpdateManyWithoutUsersInput {
+  connect: [ProjectWhereUniqueInput!]
+  create: [ProjectCreateWithoutUsersInput!]
+  delete: [ProjectWhereUniqueInput!]
+  deleteMany: [ProjectScalarWhereInput!]
+  disconnect: [ProjectWhereUniqueInput!]
+  set: [ProjectWhereUniqueInput!]
+  update: [ProjectUpdateWithWhereUniqueWithoutUsersInput!]
+  updateMany: [ProjectUpdateManyWithWhereNestedInput!]
+  upsert: [ProjectUpsertWithWhereUniqueWithoutUsersInput!]
+}
+
+input ProjectUpdateManyWithWhereNestedInput {
+  data: ProjectUpdateManyDataInput!
+  where: ProjectScalarWhereInput!
+}
+
+input ProjectUpdateWithoutUsersDataInput {
+  airtable: String
+  github: String
+  id: String
+  name: String
+  status: Status
+}
+
+input ProjectUpdateWithWhereUniqueWithoutUsersInput {
+  data: ProjectUpdateWithoutUsersDataInput!
+  where: ProjectWhereUniqueInput!
+}
+
+input ProjectUpsertWithWhereUniqueWithoutUsersInput {
+  create: ProjectCreateWithoutUsersInput!
+  update: ProjectUpdateWithoutUsersDataInput!
+  where: ProjectWhereUniqueInput!
+}
+
+input ProjectWhereInput {
+  airtable: NullableStringFilter
+  AND: [ProjectWhereInput!]
+  github: NullableStringFilter
+  id: UUIDFilter
+  name: StringFilter
+  NOT: [ProjectWhereInput!]
+  OR: [ProjectWhereInput!]
+  status: Status
+  users: UserFilter
+}
+
 input ProjectWhereUniqueInput {
   id: String
   name: String
 }
 
 type Query {
+  GetUsersByProjects(searchProject: String): [User!]!
   GetUsersByRoles(searchRole: String): [User!]!
   project(where: ProjectWhereUniqueInput!): Project
   projects(after: ProjectWhereUniqueInput, before: ProjectWhereUniqueInput, first: Int, last: Int, skip: Int): [Project!]!
@@ -95,6 +204,104 @@ input RoleCreateWithoutUsersInput {
   write: Boolean
 }
 
+input RoleFilter {
+  every: RoleWhereInput
+  none: RoleWhereInput
+  some: RoleWhereInput
+}
+
+input RoleScalarWhereInput {
+  add_member: NullableBooleanFilter
+  add_role: NullableBooleanFilter
+  admin: NullableBooleanFilter
+  AND: [RoleScalarWhereInput!]
+  create_pro: NullableBooleanFilter
+  id: UUIDFilter
+  name: StringFilter
+  NOT: [RoleScalarWhereInput!]
+  OR: [RoleScalarWhereInput!]
+  recommend: NullableBooleanFilter
+  users: UserFilter
+  write: NullableBooleanFilter
+}
+
+input RoleUpdateInput {
+  add_member: Boolean
+  add_role: Boolean
+  admin: Boolean
+  create_pro: Boolean
+  id: String
+  name: String
+  recommend: Boolean
+  users: UserUpdateManyWithoutRolesInput
+  write: Boolean
+}
+
+input RoleUpdateManyDataInput {
+  add_member: Boolean
+  add_role: Boolean
+  admin: Boolean
+  create_pro: Boolean
+  id: String
+  name: String
+  recommend: Boolean
+  write: Boolean
+}
+
+input RoleUpdateManyWithoutUsersInput {
+  connect: [RoleWhereUniqueInput!]
+  create: [RoleCreateWithoutUsersInput!]
+  delete: [RoleWhereUniqueInput!]
+  deleteMany: [RoleScalarWhereInput!]
+  disconnect: [RoleWhereUniqueInput!]
+  set: [RoleWhereUniqueInput!]
+  update: [RoleUpdateWithWhereUniqueWithoutUsersInput!]
+  updateMany: [RoleUpdateManyWithWhereNestedInput!]
+  upsert: [RoleUpsertWithWhereUniqueWithoutUsersInput!]
+}
+
+input RoleUpdateManyWithWhereNestedInput {
+  data: RoleUpdateManyDataInput!
+  where: RoleScalarWhereInput!
+}
+
+input RoleUpdateWithoutUsersDataInput {
+  add_member: Boolean
+  add_role: Boolean
+  admin: Boolean
+  create_pro: Boolean
+  id: String
+  name: String
+  recommend: Boolean
+  write: Boolean
+}
+
+input RoleUpdateWithWhereUniqueWithoutUsersInput {
+  data: RoleUpdateWithoutUsersDataInput!
+  where: RoleWhereUniqueInput!
+}
+
+input RoleUpsertWithWhereUniqueWithoutUsersInput {
+  create: RoleCreateWithoutUsersInput!
+  update: RoleUpdateWithoutUsersDataInput!
+  where: RoleWhereUniqueInput!
+}
+
+input RoleWhereInput {
+  add_member: NullableBooleanFilter
+  add_role: NullableBooleanFilter
+  admin: NullableBooleanFilter
+  AND: [RoleWhereInput!]
+  create_pro: NullableBooleanFilter
+  id: UUIDFilter
+  name: StringFilter
+  NOT: [RoleWhereInput!]
+  OR: [RoleWhereInput!]
+  recommend: NullableBooleanFilter
+  users: UserFilter
+  write: NullableBooleanFilter
+}
+
 input RoleWhereUniqueInput {
   id: String
   name: String
@@ -104,6 +311,20 @@ enum Status {
   Done
   InProgress
   Todo
+}
+
+input StringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: String
+  notIn: [String!]
+  startsWith: String
 }
 
 type User {
@@ -146,8 +367,131 @@ input UserCreateWithoutRolesInput {
   token: String
 }
 
+input UserFilter {
+  every: UserWhereInput
+  none: UserWhereInput
+  some: UserWhereInput
+}
+
+input UserScalarWhereInput {
+  AND: [UserScalarWhereInput!]
+  id: UUIDFilter
+  mail: StringFilter
+  NOT: [UserScalarWhereInput!]
+  OR: [UserScalarWhereInput!]
+  projects: ProjectFilter
+  roles: RoleFilter
+  token: NullableStringFilter
+}
+
+input UserUpdateInput {
+  id: String
+  mail: String
+  projects: ProjectUpdateManyWithoutUsersInput
+  roles: RoleUpdateManyWithoutUsersInput
+  token: String
+}
+
+input UserUpdateManyDataInput {
+  id: String
+  mail: String
+  token: String
+}
+
+input UserUpdateManyWithoutProjectsInput {
+  connect: [UserWhereUniqueInput!]
+  create: [UserCreateWithoutProjectsInput!]
+  delete: [UserWhereUniqueInput!]
+  deleteMany: [UserScalarWhereInput!]
+  disconnect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutProjectsInput!]
+  updateMany: [UserUpdateManyWithWhereNestedInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutProjectsInput!]
+}
+
+input UserUpdateManyWithoutRolesInput {
+  connect: [UserWhereUniqueInput!]
+  create: [UserCreateWithoutRolesInput!]
+  delete: [UserWhereUniqueInput!]
+  deleteMany: [UserScalarWhereInput!]
+  disconnect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutRolesInput!]
+  updateMany: [UserUpdateManyWithWhereNestedInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutRolesInput!]
+}
+
+input UserUpdateManyWithWhereNestedInput {
+  data: UserUpdateManyDataInput!
+  where: UserScalarWhereInput!
+}
+
+input UserUpdateWithoutProjectsDataInput {
+  id: String
+  mail: String
+  roles: RoleUpdateManyWithoutUsersInput
+  token: String
+}
+
+input UserUpdateWithoutRolesDataInput {
+  id: String
+  mail: String
+  projects: ProjectUpdateManyWithoutUsersInput
+  token: String
+}
+
+input UserUpdateWithWhereUniqueWithoutProjectsInput {
+  data: UserUpdateWithoutProjectsDataInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserUpdateWithWhereUniqueWithoutRolesInput {
+  data: UserUpdateWithoutRolesDataInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserUpsertWithWhereUniqueWithoutProjectsInput {
+  create: UserCreateWithoutProjectsInput!
+  update: UserUpdateWithoutProjectsDataInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserUpsertWithWhereUniqueWithoutRolesInput {
+  create: UserCreateWithoutRolesInput!
+  update: UserUpdateWithoutRolesDataInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserWhereInput {
+  AND: [UserWhereInput!]
+  id: UUIDFilter
+  mail: StringFilter
+  NOT: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  projects: ProjectFilter
+  roles: RoleFilter
+  token: NullableStringFilter
+}
+
 input UserWhereUniqueInput {
   id: String
   mail: String
   token: String
+}
+
+scalar UUID
+
+input UUIDFilter {
+  contains: UUID
+  endsWith: UUID
+  equals: UUID
+  gt: UUID
+  gte: UUID
+  in: [UUID!]
+  lt: UUID
+  lte: UUID
+  not: UUID
+  notIn: [UUID!]
+  startsWith: UUID
 }

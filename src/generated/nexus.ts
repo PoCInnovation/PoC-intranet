@@ -20,6 +20,23 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  NullableBooleanFilter: { // input type
+    equals?: boolean | null; // Boolean
+    not?: boolean | null; // Boolean
+  }
+  NullableStringFilter: { // input type
+    contains?: string | null; // String
+    endsWith?: string | null; // String
+    equals?: string | null; // String
+    gt?: string | null; // String
+    gte?: string | null; // String
+    in?: string[] | null; // [String!]
+    lt?: string | null; // String
+    lte?: string | null; // String
+    not?: string | null; // String
+    notIn?: string[] | null; // [String!]
+    startsWith?: string | null; // String
+  }
   ProjectCreateInput: { // input type
     airtable?: string | null; // String
     github?: string | null; // String
@@ -38,6 +55,79 @@ export interface NexusGenInputs {
     id?: string | null; // String
     name: string; // String!
     status: NexusGenEnums['Status']; // Status!
+  }
+  ProjectFilter: { // input type
+    every?: NexusGenInputs['ProjectWhereInput'] | null; // ProjectWhereInput
+    none?: NexusGenInputs['ProjectWhereInput'] | null; // ProjectWhereInput
+    some?: NexusGenInputs['ProjectWhereInput'] | null; // ProjectWhereInput
+  }
+  ProjectScalarWhereInput: { // input type
+    airtable?: NexusGenInputs['NullableStringFilter'] | null; // NullableStringFilter
+    AND?: NexusGenInputs['ProjectScalarWhereInput'][] | null; // [ProjectScalarWhereInput!]
+    github?: NexusGenInputs['NullableStringFilter'] | null; // NullableStringFilter
+    id?: NexusGenInputs['UUIDFilter'] | null; // UUIDFilter
+    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['ProjectScalarWhereInput'][] | null; // [ProjectScalarWhereInput!]
+    OR?: NexusGenInputs['ProjectScalarWhereInput'][] | null; // [ProjectScalarWhereInput!]
+    status?: NexusGenEnums['Status'] | null; // Status
+    users?: NexusGenInputs['UserFilter'] | null; // UserFilter
+  }
+  ProjectUpdateInput: { // input type
+    airtable?: string | null; // String
+    github?: string | null; // String
+    id?: string | null; // String
+    name?: string | null; // String
+    status?: NexusGenEnums['Status'] | null; // Status
+    users?: NexusGenInputs['UserUpdateManyWithoutProjectsInput'] | null; // UserUpdateManyWithoutProjectsInput
+  }
+  ProjectUpdateManyDataInput: { // input type
+    airtable?: string | null; // String
+    github?: string | null; // String
+    id?: string | null; // String
+    name?: string | null; // String
+    status?: NexusGenEnums['Status'] | null; // Status
+  }
+  ProjectUpdateManyWithWhereNestedInput: { // input type
+    data: NexusGenInputs['ProjectUpdateManyDataInput']; // ProjectUpdateManyDataInput!
+    where: NexusGenInputs['ProjectScalarWhereInput']; // ProjectScalarWhereInput!
+  }
+  ProjectUpdateManyWithoutUsersInput: { // input type
+    connect?: NexusGenInputs['ProjectWhereUniqueInput'][] | null; // [ProjectWhereUniqueInput!]
+    create?: NexusGenInputs['ProjectCreateWithoutUsersInput'][] | null; // [ProjectCreateWithoutUsersInput!]
+    delete?: NexusGenInputs['ProjectWhereUniqueInput'][] | null; // [ProjectWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['ProjectScalarWhereInput'][] | null; // [ProjectScalarWhereInput!]
+    disconnect?: NexusGenInputs['ProjectWhereUniqueInput'][] | null; // [ProjectWhereUniqueInput!]
+    set?: NexusGenInputs['ProjectWhereUniqueInput'][] | null; // [ProjectWhereUniqueInput!]
+    update?: NexusGenInputs['ProjectUpdateWithWhereUniqueWithoutUsersInput'][] | null; // [ProjectUpdateWithWhereUniqueWithoutUsersInput!]
+    updateMany?: NexusGenInputs['ProjectUpdateManyWithWhereNestedInput'][] | null; // [ProjectUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['ProjectUpsertWithWhereUniqueWithoutUsersInput'][] | null; // [ProjectUpsertWithWhereUniqueWithoutUsersInput!]
+  }
+  ProjectUpdateWithWhereUniqueWithoutUsersInput: { // input type
+    data: NexusGenInputs['ProjectUpdateWithoutUsersDataInput']; // ProjectUpdateWithoutUsersDataInput!
+    where: NexusGenInputs['ProjectWhereUniqueInput']; // ProjectWhereUniqueInput!
+  }
+  ProjectUpdateWithoutUsersDataInput: { // input type
+    airtable?: string | null; // String
+    github?: string | null; // String
+    id?: string | null; // String
+    name?: string | null; // String
+    status?: NexusGenEnums['Status'] | null; // Status
+  }
+  ProjectUpsertWithWhereUniqueWithoutUsersInput: { // input type
+    create: NexusGenInputs['ProjectCreateWithoutUsersInput']; // ProjectCreateWithoutUsersInput!
+    update: NexusGenInputs['ProjectUpdateWithoutUsersDataInput']; // ProjectUpdateWithoutUsersDataInput!
+    where: NexusGenInputs['ProjectWhereUniqueInput']; // ProjectWhereUniqueInput!
+  }
+  ProjectWhereInput: { // input type
+    airtable?: NexusGenInputs['NullableStringFilter'] | null; // NullableStringFilter
+    AND?: NexusGenInputs['ProjectWhereInput'][] | null; // [ProjectWhereInput!]
+    github?: NexusGenInputs['NullableStringFilter'] | null; // NullableStringFilter
+    id?: NexusGenInputs['UUIDFilter'] | null; // UUIDFilter
+    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['ProjectWhereInput'][] | null; // [ProjectWhereInput!]
+    OR?: NexusGenInputs['ProjectWhereInput'][] | null; // [ProjectWhereInput!]
+    status?: NexusGenEnums['Status'] | null; // Status
+    users?: NexusGenInputs['UserFilter'] | null; // UserFilter
   }
   ProjectWhereUniqueInput: { // input type
     id?: string | null; // String
@@ -68,9 +158,123 @@ export interface NexusGenInputs {
     recommend?: boolean | null; // Boolean
     write?: boolean | null; // Boolean
   }
+  RoleFilter: { // input type
+    every?: NexusGenInputs['RoleWhereInput'] | null; // RoleWhereInput
+    none?: NexusGenInputs['RoleWhereInput'] | null; // RoleWhereInput
+    some?: NexusGenInputs['RoleWhereInput'] | null; // RoleWhereInput
+  }
+  RoleScalarWhereInput: { // input type
+    add_member?: NexusGenInputs['NullableBooleanFilter'] | null; // NullableBooleanFilter
+    add_role?: NexusGenInputs['NullableBooleanFilter'] | null; // NullableBooleanFilter
+    admin?: NexusGenInputs['NullableBooleanFilter'] | null; // NullableBooleanFilter
+    AND?: NexusGenInputs['RoleScalarWhereInput'][] | null; // [RoleScalarWhereInput!]
+    create_pro?: NexusGenInputs['NullableBooleanFilter'] | null; // NullableBooleanFilter
+    id?: NexusGenInputs['UUIDFilter'] | null; // UUIDFilter
+    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['RoleScalarWhereInput'][] | null; // [RoleScalarWhereInput!]
+    OR?: NexusGenInputs['RoleScalarWhereInput'][] | null; // [RoleScalarWhereInput!]
+    recommend?: NexusGenInputs['NullableBooleanFilter'] | null; // NullableBooleanFilter
+    users?: NexusGenInputs['UserFilter'] | null; // UserFilter
+    write?: NexusGenInputs['NullableBooleanFilter'] | null; // NullableBooleanFilter
+  }
+  RoleUpdateInput: { // input type
+    add_member?: boolean | null; // Boolean
+    add_role?: boolean | null; // Boolean
+    admin?: boolean | null; // Boolean
+    create_pro?: boolean | null; // Boolean
+    id?: string | null; // String
+    name?: string | null; // String
+    recommend?: boolean | null; // Boolean
+    users?: NexusGenInputs['UserUpdateManyWithoutRolesInput'] | null; // UserUpdateManyWithoutRolesInput
+    write?: boolean | null; // Boolean
+  }
+  RoleUpdateManyDataInput: { // input type
+    add_member?: boolean | null; // Boolean
+    add_role?: boolean | null; // Boolean
+    admin?: boolean | null; // Boolean
+    create_pro?: boolean | null; // Boolean
+    id?: string | null; // String
+    name?: string | null; // String
+    recommend?: boolean | null; // Boolean
+    write?: boolean | null; // Boolean
+  }
+  RoleUpdateManyWithWhereNestedInput: { // input type
+    data: NexusGenInputs['RoleUpdateManyDataInput']; // RoleUpdateManyDataInput!
+    where: NexusGenInputs['RoleScalarWhereInput']; // RoleScalarWhereInput!
+  }
+  RoleUpdateManyWithoutUsersInput: { // input type
+    connect?: NexusGenInputs['RoleWhereUniqueInput'][] | null; // [RoleWhereUniqueInput!]
+    create?: NexusGenInputs['RoleCreateWithoutUsersInput'][] | null; // [RoleCreateWithoutUsersInput!]
+    delete?: NexusGenInputs['RoleWhereUniqueInput'][] | null; // [RoleWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['RoleScalarWhereInput'][] | null; // [RoleScalarWhereInput!]
+    disconnect?: NexusGenInputs['RoleWhereUniqueInput'][] | null; // [RoleWhereUniqueInput!]
+    set?: NexusGenInputs['RoleWhereUniqueInput'][] | null; // [RoleWhereUniqueInput!]
+    update?: NexusGenInputs['RoleUpdateWithWhereUniqueWithoutUsersInput'][] | null; // [RoleUpdateWithWhereUniqueWithoutUsersInput!]
+    updateMany?: NexusGenInputs['RoleUpdateManyWithWhereNestedInput'][] | null; // [RoleUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['RoleUpsertWithWhereUniqueWithoutUsersInput'][] | null; // [RoleUpsertWithWhereUniqueWithoutUsersInput!]
+  }
+  RoleUpdateWithWhereUniqueWithoutUsersInput: { // input type
+    data: NexusGenInputs['RoleUpdateWithoutUsersDataInput']; // RoleUpdateWithoutUsersDataInput!
+    where: NexusGenInputs['RoleWhereUniqueInput']; // RoleWhereUniqueInput!
+  }
+  RoleUpdateWithoutUsersDataInput: { // input type
+    add_member?: boolean | null; // Boolean
+    add_role?: boolean | null; // Boolean
+    admin?: boolean | null; // Boolean
+    create_pro?: boolean | null; // Boolean
+    id?: string | null; // String
+    name?: string | null; // String
+    recommend?: boolean | null; // Boolean
+    write?: boolean | null; // Boolean
+  }
+  RoleUpsertWithWhereUniqueWithoutUsersInput: { // input type
+    create: NexusGenInputs['RoleCreateWithoutUsersInput']; // RoleCreateWithoutUsersInput!
+    update: NexusGenInputs['RoleUpdateWithoutUsersDataInput']; // RoleUpdateWithoutUsersDataInput!
+    where: NexusGenInputs['RoleWhereUniqueInput']; // RoleWhereUniqueInput!
+  }
+  RoleWhereInput: { // input type
+    add_member?: NexusGenInputs['NullableBooleanFilter'] | null; // NullableBooleanFilter
+    add_role?: NexusGenInputs['NullableBooleanFilter'] | null; // NullableBooleanFilter
+    admin?: NexusGenInputs['NullableBooleanFilter'] | null; // NullableBooleanFilter
+    AND?: NexusGenInputs['RoleWhereInput'][] | null; // [RoleWhereInput!]
+    create_pro?: NexusGenInputs['NullableBooleanFilter'] | null; // NullableBooleanFilter
+    id?: NexusGenInputs['UUIDFilter'] | null; // UUIDFilter
+    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['RoleWhereInput'][] | null; // [RoleWhereInput!]
+    OR?: NexusGenInputs['RoleWhereInput'][] | null; // [RoleWhereInput!]
+    recommend?: NexusGenInputs['NullableBooleanFilter'] | null; // NullableBooleanFilter
+    users?: NexusGenInputs['UserFilter'] | null; // UserFilter
+    write?: NexusGenInputs['NullableBooleanFilter'] | null; // NullableBooleanFilter
+  }
   RoleWhereUniqueInput: { // input type
     id?: string | null; // String
     name?: string | null; // String
+  }
+  StringFilter: { // input type
+    contains?: string | null; // String
+    endsWith?: string | null; // String
+    equals?: string | null; // String
+    gt?: string | null; // String
+    gte?: string | null; // String
+    in?: string[] | null; // [String!]
+    lt?: string | null; // String
+    lte?: string | null; // String
+    not?: string | null; // String
+    notIn?: string[] | null; // [String!]
+    startsWith?: string | null; // String
+  }
+  UUIDFilter: { // input type
+    contains?: any | null; // UUID
+    endsWith?: any | null; // UUID
+    equals?: any | null; // UUID
+    gt?: any | null; // UUID
+    gte?: any | null; // UUID
+    in?: any[] | null; // [UUID!]
+    lt?: any | null; // UUID
+    lte?: any | null; // UUID
+    not?: any | null; // UUID
+    notIn?: any[] | null; // [UUID!]
+    startsWith?: any | null; // UUID
   }
   UserCreateInput: { // input type
     id?: string | null; // String
@@ -99,6 +303,99 @@ export interface NexusGenInputs {
     projects?: NexusGenInputs['ProjectCreateManyWithoutUsersInput'] | null; // ProjectCreateManyWithoutUsersInput
     token?: string | null; // String
   }
+  UserFilter: { // input type
+    every?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    none?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    some?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+  }
+  UserScalarWhereInput: { // input type
+    AND?: NexusGenInputs['UserScalarWhereInput'][] | null; // [UserScalarWhereInput!]
+    id?: NexusGenInputs['UUIDFilter'] | null; // UUIDFilter
+    mail?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['UserScalarWhereInput'][] | null; // [UserScalarWhereInput!]
+    OR?: NexusGenInputs['UserScalarWhereInput'][] | null; // [UserScalarWhereInput!]
+    projects?: NexusGenInputs['ProjectFilter'] | null; // ProjectFilter
+    roles?: NexusGenInputs['RoleFilter'] | null; // RoleFilter
+    token?: NexusGenInputs['NullableStringFilter'] | null; // NullableStringFilter
+  }
+  UserUpdateInput: { // input type
+    id?: string | null; // String
+    mail?: string | null; // String
+    projects?: NexusGenInputs['ProjectUpdateManyWithoutUsersInput'] | null; // ProjectUpdateManyWithoutUsersInput
+    roles?: NexusGenInputs['RoleUpdateManyWithoutUsersInput'] | null; // RoleUpdateManyWithoutUsersInput
+    token?: string | null; // String
+  }
+  UserUpdateManyDataInput: { // input type
+    id?: string | null; // String
+    mail?: string | null; // String
+    token?: string | null; // String
+  }
+  UserUpdateManyWithWhereNestedInput: { // input type
+    data: NexusGenInputs['UserUpdateManyDataInput']; // UserUpdateManyDataInput!
+    where: NexusGenInputs['UserScalarWhereInput']; // UserScalarWhereInput!
+  }
+  UserUpdateManyWithoutProjectsInput: { // input type
+    connect?: NexusGenInputs['UserWhereUniqueInput'][] | null; // [UserWhereUniqueInput!]
+    create?: NexusGenInputs['UserCreateWithoutProjectsInput'][] | null; // [UserCreateWithoutProjectsInput!]
+    delete?: NexusGenInputs['UserWhereUniqueInput'][] | null; // [UserWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['UserScalarWhereInput'][] | null; // [UserScalarWhereInput!]
+    disconnect?: NexusGenInputs['UserWhereUniqueInput'][] | null; // [UserWhereUniqueInput!]
+    set?: NexusGenInputs['UserWhereUniqueInput'][] | null; // [UserWhereUniqueInput!]
+    update?: NexusGenInputs['UserUpdateWithWhereUniqueWithoutProjectsInput'][] | null; // [UserUpdateWithWhereUniqueWithoutProjectsInput!]
+    updateMany?: NexusGenInputs['UserUpdateManyWithWhereNestedInput'][] | null; // [UserUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['UserUpsertWithWhereUniqueWithoutProjectsInput'][] | null; // [UserUpsertWithWhereUniqueWithoutProjectsInput!]
+  }
+  UserUpdateManyWithoutRolesInput: { // input type
+    connect?: NexusGenInputs['UserWhereUniqueInput'][] | null; // [UserWhereUniqueInput!]
+    create?: NexusGenInputs['UserCreateWithoutRolesInput'][] | null; // [UserCreateWithoutRolesInput!]
+    delete?: NexusGenInputs['UserWhereUniqueInput'][] | null; // [UserWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['UserScalarWhereInput'][] | null; // [UserScalarWhereInput!]
+    disconnect?: NexusGenInputs['UserWhereUniqueInput'][] | null; // [UserWhereUniqueInput!]
+    set?: NexusGenInputs['UserWhereUniqueInput'][] | null; // [UserWhereUniqueInput!]
+    update?: NexusGenInputs['UserUpdateWithWhereUniqueWithoutRolesInput'][] | null; // [UserUpdateWithWhereUniqueWithoutRolesInput!]
+    updateMany?: NexusGenInputs['UserUpdateManyWithWhereNestedInput'][] | null; // [UserUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['UserUpsertWithWhereUniqueWithoutRolesInput'][] | null; // [UserUpsertWithWhereUniqueWithoutRolesInput!]
+  }
+  UserUpdateWithWhereUniqueWithoutProjectsInput: { // input type
+    data: NexusGenInputs['UserUpdateWithoutProjectsDataInput']; // UserUpdateWithoutProjectsDataInput!
+    where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
+  }
+  UserUpdateWithWhereUniqueWithoutRolesInput: { // input type
+    data: NexusGenInputs['UserUpdateWithoutRolesDataInput']; // UserUpdateWithoutRolesDataInput!
+    where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
+  }
+  UserUpdateWithoutProjectsDataInput: { // input type
+    id?: string | null; // String
+    mail?: string | null; // String
+    roles?: NexusGenInputs['RoleUpdateManyWithoutUsersInput'] | null; // RoleUpdateManyWithoutUsersInput
+    token?: string | null; // String
+  }
+  UserUpdateWithoutRolesDataInput: { // input type
+    id?: string | null; // String
+    mail?: string | null; // String
+    projects?: NexusGenInputs['ProjectUpdateManyWithoutUsersInput'] | null; // ProjectUpdateManyWithoutUsersInput
+    token?: string | null; // String
+  }
+  UserUpsertWithWhereUniqueWithoutProjectsInput: { // input type
+    create: NexusGenInputs['UserCreateWithoutProjectsInput']; // UserCreateWithoutProjectsInput!
+    update: NexusGenInputs['UserUpdateWithoutProjectsDataInput']; // UserUpdateWithoutProjectsDataInput!
+    where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
+  }
+  UserUpsertWithWhereUniqueWithoutRolesInput: { // input type
+    create: NexusGenInputs['UserCreateWithoutRolesInput']; // UserCreateWithoutRolesInput!
+    update: NexusGenInputs['UserUpdateWithoutRolesDataInput']; // UserUpdateWithoutRolesDataInput!
+    where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
+  }
+  UserWhereInput: { // input type
+    AND?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
+    id?: NexusGenInputs['UUIDFilter'] | null; // UUIDFilter
+    mail?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
+    OR?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
+    projects?: NexusGenInputs['ProjectFilter'] | null; // ProjectFilter
+    roles?: NexusGenInputs['RoleFilter'] | null; // RoleFilter
+    token?: NexusGenInputs['NullableStringFilter'] | null; // NullableStringFilter
+  }
   UserWhereUniqueInput: { // input type
     id?: string | null; // String
     mail?: string | null; // String
@@ -121,22 +418,61 @@ export interface NexusGenRootTypes {
   Float: number;
   Boolean: boolean;
   ID: string;
+  UUID: any;
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
+  NullableBooleanFilter: NexusGenInputs['NullableBooleanFilter'];
+  NullableStringFilter: NexusGenInputs['NullableStringFilter'];
   ProjectCreateInput: NexusGenInputs['ProjectCreateInput'];
   ProjectCreateManyWithoutUsersInput: NexusGenInputs['ProjectCreateManyWithoutUsersInput'];
   ProjectCreateWithoutUsersInput: NexusGenInputs['ProjectCreateWithoutUsersInput'];
+  ProjectFilter: NexusGenInputs['ProjectFilter'];
+  ProjectScalarWhereInput: NexusGenInputs['ProjectScalarWhereInput'];
+  ProjectUpdateInput: NexusGenInputs['ProjectUpdateInput'];
+  ProjectUpdateManyDataInput: NexusGenInputs['ProjectUpdateManyDataInput'];
+  ProjectUpdateManyWithWhereNestedInput: NexusGenInputs['ProjectUpdateManyWithWhereNestedInput'];
+  ProjectUpdateManyWithoutUsersInput: NexusGenInputs['ProjectUpdateManyWithoutUsersInput'];
+  ProjectUpdateWithWhereUniqueWithoutUsersInput: NexusGenInputs['ProjectUpdateWithWhereUniqueWithoutUsersInput'];
+  ProjectUpdateWithoutUsersDataInput: NexusGenInputs['ProjectUpdateWithoutUsersDataInput'];
+  ProjectUpsertWithWhereUniqueWithoutUsersInput: NexusGenInputs['ProjectUpsertWithWhereUniqueWithoutUsersInput'];
+  ProjectWhereInput: NexusGenInputs['ProjectWhereInput'];
   ProjectWhereUniqueInput: NexusGenInputs['ProjectWhereUniqueInput'];
   RoleCreateInput: NexusGenInputs['RoleCreateInput'];
   RoleCreateManyWithoutUsersInput: NexusGenInputs['RoleCreateManyWithoutUsersInput'];
   RoleCreateWithoutUsersInput: NexusGenInputs['RoleCreateWithoutUsersInput'];
+  RoleFilter: NexusGenInputs['RoleFilter'];
+  RoleScalarWhereInput: NexusGenInputs['RoleScalarWhereInput'];
+  RoleUpdateInput: NexusGenInputs['RoleUpdateInput'];
+  RoleUpdateManyDataInput: NexusGenInputs['RoleUpdateManyDataInput'];
+  RoleUpdateManyWithWhereNestedInput: NexusGenInputs['RoleUpdateManyWithWhereNestedInput'];
+  RoleUpdateManyWithoutUsersInput: NexusGenInputs['RoleUpdateManyWithoutUsersInput'];
+  RoleUpdateWithWhereUniqueWithoutUsersInput: NexusGenInputs['RoleUpdateWithWhereUniqueWithoutUsersInput'];
+  RoleUpdateWithoutUsersDataInput: NexusGenInputs['RoleUpdateWithoutUsersDataInput'];
+  RoleUpsertWithWhereUniqueWithoutUsersInput: NexusGenInputs['RoleUpsertWithWhereUniqueWithoutUsersInput'];
+  RoleWhereInput: NexusGenInputs['RoleWhereInput'];
   RoleWhereUniqueInput: NexusGenInputs['RoleWhereUniqueInput'];
+  StringFilter: NexusGenInputs['StringFilter'];
+  UUIDFilter: NexusGenInputs['UUIDFilter'];
   UserCreateInput: NexusGenInputs['UserCreateInput'];
   UserCreateManyWithoutProjectsInput: NexusGenInputs['UserCreateManyWithoutProjectsInput'];
   UserCreateManyWithoutRolesInput: NexusGenInputs['UserCreateManyWithoutRolesInput'];
   UserCreateWithoutProjectsInput: NexusGenInputs['UserCreateWithoutProjectsInput'];
   UserCreateWithoutRolesInput: NexusGenInputs['UserCreateWithoutRolesInput'];
+  UserFilter: NexusGenInputs['UserFilter'];
+  UserScalarWhereInput: NexusGenInputs['UserScalarWhereInput'];
+  UserUpdateInput: NexusGenInputs['UserUpdateInput'];
+  UserUpdateManyDataInput: NexusGenInputs['UserUpdateManyDataInput'];
+  UserUpdateManyWithWhereNestedInput: NexusGenInputs['UserUpdateManyWithWhereNestedInput'];
+  UserUpdateManyWithoutProjectsInput: NexusGenInputs['UserUpdateManyWithoutProjectsInput'];
+  UserUpdateManyWithoutRolesInput: NexusGenInputs['UserUpdateManyWithoutRolesInput'];
+  UserUpdateWithWhereUniqueWithoutProjectsInput: NexusGenInputs['UserUpdateWithWhereUniqueWithoutProjectsInput'];
+  UserUpdateWithWhereUniqueWithoutRolesInput: NexusGenInputs['UserUpdateWithWhereUniqueWithoutRolesInput'];
+  UserUpdateWithoutProjectsDataInput: NexusGenInputs['UserUpdateWithoutProjectsDataInput'];
+  UserUpdateWithoutRolesDataInput: NexusGenInputs['UserUpdateWithoutRolesDataInput'];
+  UserUpsertWithWhereUniqueWithoutProjectsInput: NexusGenInputs['UserUpsertWithWhereUniqueWithoutProjectsInput'];
+  UserUpsertWithWhereUniqueWithoutRolesInput: NexusGenInputs['UserUpsertWithWhereUniqueWithoutRolesInput'];
+  UserWhereInput: NexusGenInputs['UserWhereInput'];
   UserWhereUniqueInput: NexusGenInputs['UserWhereUniqueInput'];
   Status: NexusGenEnums['Status'];
 }
@@ -146,7 +482,13 @@ export interface NexusGenFieldTypes {
     createProject: NexusGenRootTypes['Project']; // Project!
     createRole: NexusGenRootTypes['Role']; // Role!
     createUser: NexusGenRootTypes['User']; // User!
+    deleteProject: NexusGenRootTypes['Project'] | null; // Project
+    deleteRole: NexusGenRootTypes['Role'] | null; // Role
+    deleteUser: NexusGenRootTypes['User'] | null; // User
+    LinkUserToProject: NexusGenRootTypes['User'][]; // [User!]!
     LinkUserToRole: NexusGenRootTypes['User'][]; // [User!]!
+    updateProject: NexusGenRootTypes['Project'] | null; // Project
+    updateUser: NexusGenRootTypes['Role'] | null; // Role
   }
   Project: { // field return type
     airtable: string | null; // String
@@ -157,6 +499,7 @@ export interface NexusGenFieldTypes {
     users: NexusGenRootTypes['User'][]; // [User!]!
   }
   Query: { // field return type
+    GetUsersByProjects: NexusGenRootTypes['User'][]; // [User!]!
     GetUsersByRoles: NexusGenRootTypes['User'][]; // [User!]!
     project: NexusGenRootTypes['Project'] | null; // Project
     projects: NexusGenRootTypes['Project'][]; // [Project!]!
@@ -196,9 +539,30 @@ export interface NexusGenArgTypes {
     createUser: { // args
       data: NexusGenInputs['UserCreateInput']; // UserCreateInput!
     }
+    deleteProject: { // args
+      where: NexusGenInputs['ProjectWhereUniqueInput']; // ProjectWhereUniqueInput!
+    }
+    deleteRole: { // args
+      where: NexusGenInputs['RoleWhereUniqueInput']; // RoleWhereUniqueInput!
+    }
+    deleteUser: { // args
+      where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
+    }
+    LinkUserToProject: { // args
+      projectId: string; // String!
+      userId: string; // String!
+    }
     LinkUserToRole: { // args
       roleId: string; // String!
       userId: string; // String!
+    }
+    updateProject: { // args
+      data: NexusGenInputs['ProjectUpdateInput']; // ProjectUpdateInput!
+      where: NexusGenInputs['ProjectWhereUniqueInput']; // ProjectWhereUniqueInput!
+    }
+    updateUser: { // args
+      data: NexusGenInputs['RoleUpdateInput']; // RoleUpdateInput!
+      where: NexusGenInputs['RoleWhereUniqueInput']; // RoleWhereUniqueInput!
     }
   }
   Project: {
@@ -211,6 +575,9 @@ export interface NexusGenArgTypes {
     }
   }
   Query: {
+    GetUsersByProjects: { // args
+      searchProject?: string | null; // String
+    }
     GetUsersByRoles: { // args
       searchRole?: string | null; // String
     }
@@ -263,13 +630,13 @@ export interface NexusGenInheritedFields {}
 
 export type NexusGenObjectNames = "Mutation" | "Project" | "Query" | "Role" | "User";
 
-export type NexusGenInputNames = "ProjectCreateInput" | "ProjectCreateManyWithoutUsersInput" | "ProjectCreateWithoutUsersInput" | "ProjectWhereUniqueInput" | "RoleCreateInput" | "RoleCreateManyWithoutUsersInput" | "RoleCreateWithoutUsersInput" | "RoleWhereUniqueInput" | "UserCreateInput" | "UserCreateManyWithoutProjectsInput" | "UserCreateManyWithoutRolesInput" | "UserCreateWithoutProjectsInput" | "UserCreateWithoutRolesInput" | "UserWhereUniqueInput";
+export type NexusGenInputNames = "NullableBooleanFilter" | "NullableStringFilter" | "ProjectCreateInput" | "ProjectCreateManyWithoutUsersInput" | "ProjectCreateWithoutUsersInput" | "ProjectFilter" | "ProjectScalarWhereInput" | "ProjectUpdateInput" | "ProjectUpdateManyDataInput" | "ProjectUpdateManyWithWhereNestedInput" | "ProjectUpdateManyWithoutUsersInput" | "ProjectUpdateWithWhereUniqueWithoutUsersInput" | "ProjectUpdateWithoutUsersDataInput" | "ProjectUpsertWithWhereUniqueWithoutUsersInput" | "ProjectWhereInput" | "ProjectWhereUniqueInput" | "RoleCreateInput" | "RoleCreateManyWithoutUsersInput" | "RoleCreateWithoutUsersInput" | "RoleFilter" | "RoleScalarWhereInput" | "RoleUpdateInput" | "RoleUpdateManyDataInput" | "RoleUpdateManyWithWhereNestedInput" | "RoleUpdateManyWithoutUsersInput" | "RoleUpdateWithWhereUniqueWithoutUsersInput" | "RoleUpdateWithoutUsersDataInput" | "RoleUpsertWithWhereUniqueWithoutUsersInput" | "RoleWhereInput" | "RoleWhereUniqueInput" | "StringFilter" | "UUIDFilter" | "UserCreateInput" | "UserCreateManyWithoutProjectsInput" | "UserCreateManyWithoutRolesInput" | "UserCreateWithoutProjectsInput" | "UserCreateWithoutRolesInput" | "UserFilter" | "UserScalarWhereInput" | "UserUpdateInput" | "UserUpdateManyDataInput" | "UserUpdateManyWithWhereNestedInput" | "UserUpdateManyWithoutProjectsInput" | "UserUpdateManyWithoutRolesInput" | "UserUpdateWithWhereUniqueWithoutProjectsInput" | "UserUpdateWithWhereUniqueWithoutRolesInput" | "UserUpdateWithoutProjectsDataInput" | "UserUpdateWithoutRolesDataInput" | "UserUpsertWithWhereUniqueWithoutProjectsInput" | "UserUpsertWithWhereUniqueWithoutRolesInput" | "UserWhereInput" | "UserWhereUniqueInput";
 
 export type NexusGenEnumNames = "Status";
 
 export type NexusGenInterfaceNames = never;
 
-export type NexusGenScalarNames = "Boolean" | "Float" | "ID" | "Int" | "String";
+export type NexusGenScalarNames = "Boolean" | "Float" | "ID" | "Int" | "String" | "UUID";
 
 export type NexusGenUnionNames = never;
 

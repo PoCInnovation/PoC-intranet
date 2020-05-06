@@ -54,25 +54,23 @@ const Query = objectType({
         t.crud.role();
 
         t.list.field('GetUsersByRoles', {
-            type: 'User',
+            type: 'Role',
             args: { searchRole: stringArg() },
             resolve: (_, { searchRole }, ctx) => {
-                return ctx.prisma.user.findMany({
-                    where: {
-                        roles: { every: { name: searchRole } }
-                    }
+                return ctx.prisma.role.findMany({
+                    where: { name: searchRole },
+                    include: { users: true }
                 });
             }
         });
 
         t.list.field('GetUsersByProjects', {
-            type: 'User',
+            type: 'Project',
             args: { searchProject: stringArg() },
             resolve: (_, { searchProject }, ctx) => {
-                return ctx.prisma.user.findMany({
-                    where: {
-                        projects: { every: { name: searchProject } }
-                    }
+                return ctx.prisma.project.findMany({
+                    where: { name: searchProject },
+                    include: { users: true }
                 });
             }
         });

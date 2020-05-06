@@ -499,8 +499,8 @@ export interface NexusGenFieldTypes {
     users: NexusGenRootTypes['User'][]; // [User!]!
   }
   Query: { // field return type
-    GetUsersByProjects: NexusGenRootTypes['User'][]; // [User!]!
-    GetUsersByRoles: NexusGenRootTypes['User'][]; // [User!]!
+    GetUsersByProjects: NexusGenRootTypes['Project'][]; // [Project!]!
+    GetUsersByRoles: NexusGenRootTypes['Role'][]; // [Role!]!
     project: NexusGenRootTypes['Project'] | null; // Project
     projects: NexusGenRootTypes['Project'][]; // [Project!]!
     role: NexusGenRootTypes['Role'] | null; // Role

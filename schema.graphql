@@ -154,8 +154,8 @@ input ProjectWhereUniqueInput {
 }
 
 type Query {
-  GetUsersByProjects(searchProject: String): [User!]!
-  GetUsersByRoles(searchRole: String): [User!]!
+  GetUsersByProjects(searchProject: String): [Project!]!
+  GetUsersByRoles(searchRole: String): [Role!]!
   project(where: ProjectWhereUniqueInput!): Project
   projects(after: ProjectWhereUniqueInput, before: ProjectWhereUniqueInput, first: Int, last: Int, skip: Int): [Project!]!
   role(where: RoleWhereUniqueInput!): Role

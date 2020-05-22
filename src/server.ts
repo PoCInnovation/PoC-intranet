@@ -1,11 +1,12 @@
 import { ApolloServer } from 'apollo-server';
 import { schema } from './schema';
 import { createContext } from './context';
-import { airtable, getAirtable_Id, getTableInfo } from './integration/airtable/airtable'
+import { getAllAirtable_Id, getTable_by_id, getAllTable_Id } from './integration/airtable/airtable'
 
 
-getAirtable_Id();
+//getAllAirtable_Id();
 //getTableInfo();
+getAllTable_Id("clément.doucy@epitech.eu");
 new ApolloServer({ schema, context: createContext }).listen(
     { port: 4000 },
     () =>

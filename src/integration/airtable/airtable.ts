@@ -77,7 +77,6 @@ function getTable_by_login(id: string, table_name: string, login : string) {
         }).eachPage(async function page(records: Array<Object>) {
             res = records.map(function(log: any) {
                 if (log.get('Login') == login) {
-                    const promise = getTable_by_id(id, table_name);
                     return {table_name, id}
                 }
                 return null   
@@ -93,6 +92,5 @@ function getTable_by_login(id: string, table_name: string, login : string) {
 export {
     getAllAirtable_Id,
     getTable_by_id,
-    //getTable_by_login,
     getAllTable_Id
 }

@@ -3,7 +3,6 @@ import { schema } from './schema';
 import { createContext } from './context';
 import { getAllAirtable_Id, getTable_by_id, getAllTable_Id } from './integration/airtable/airtable'
 
-
 //getAllAirtable_Id();
 //getTableInfo();
 getAllTable_Id("clément.doucy@epitech.eu");

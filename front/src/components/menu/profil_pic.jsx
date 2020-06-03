@@ -2,13 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledPP = styled.img`
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     
     @media screen and (max-width: 500px), screen and (max-height: 500px) {
         position: absolute;
-        right: 8px;
+        right: 15px;
         margin: 0;
         order: 3;
     }

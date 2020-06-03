@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import ImageBloc from "./image_bloc";
 import Categories from "./categories";
-
+import BurgerIcon from "./burger_icon";
 /*
   Todo Faire le menu burger
 */
@@ -14,15 +14,13 @@ const StyledMenu = styled.div`
     }
 
     display: flex;
-    position: absolute;
+    position: fixed;
     background: #ffffff;
     flex-direction: column;
     grid-row-gap: 22.5%;
     align-items: center;
-    width: 20%;
+    width: 23vh;
     height: 100%;
-    max-width: 150px;
-    min-width: 120px;
     min-height: 200px;
     box-shadow: 5px 0 50px rgba(0, 0, 0, 0.5);
     
@@ -42,7 +40,7 @@ function Menu() {
     return (
         <StyledMenu>
             <ImageBloc/>
-            <Categories/>
+            <BurgerIcon/>
         </StyledMenu>
     );
 }

@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import Categories from "./categories";
+import Nav from "./nav";
 
 const StyledBurgerIcon = styled.div`
   display: none;
   
-  @media screen and (max-width: 500px), screen and (max-height: 500px) {
+  @media screen and (max-width: 700px), screen and (max-height: 500px) {
     display: flex;
     width: 2rem;
     height: 2rem;
@@ -40,7 +40,7 @@ const StyledBurgerIcon = styled.div`
   }
 `;
 
-const BurgerIcon = () => {
+const BurgerMenu = () => {
     const [open, setOpen] = useState(false);
     return (
         <>
@@ -49,9 +49,9 @@ const BurgerIcon = () => {
             <div/>
             <div/>
         </StyledBurgerIcon>
-        <Categories open={open}/>
+        <Nav open={open}/>
         </>
     );
 };
 
-export default BurgerIcon;
+export default BurgerMenu;

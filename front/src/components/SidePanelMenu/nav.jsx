@@ -1,40 +1,46 @@
 import React from "react";
 import styled from "styled-components";
 
-const StyledCategories = styled.div`
+const StyledNav = styled.div`
     display: flex;
     flex-direction: column;
     align-self: center;
+    
     p {
-      font-size: 23px;
+      font-size: 18px;
       margin: 5px 10px;
     }
-    
-    @media screen and (max-width: 500px), screen and (max-height: 500px) {
-      display: ${({open}) => open ? 'flex' : 'none'};
+      
+    @media screen and (max-width: 700px), screen and (max-height: 500px) {
       transform: ${({open}) => open ? 'translateX(0)' : 'translateX(-100%)'};
-      transition: transform 0.3s ease-in-out;
+      transition: 0.5s ease-in-out;
       position: fixed;
+      z-index: 5;
       top: 0;
       left: 0;
       height: 100vh;
+      width: 100vw;
       background-color: #ffffff;
       box-shadow: ${({open}) => open ? '0 5px 50px rgba(0, 0, 0, 0.5)' : null};
       padding-top: 50px;
       justify-content: center;
+      text-align: center;
       
+      p:hover {
+        background-color: #f5f5f5;
+      }
     }  
 `;
 
-const Categories = ({open}) => {
+const Nav = ({open}) => {
     return (
-        <StyledCategories open={open}>
+        <StyledNav open={open}>
             <p>Projet</p>
             <p>Planning</p>
             <p>News</p>
             <p>Paramètres</p>
-        </StyledCategories>
+        </StyledNav>
     );
 };
 
-export default Categories;
+export default Nav;

@@ -5,7 +5,7 @@ const StyledLogo = styled.img`
     width: 100px;
     height: 100px;
     
-    @media screen and (max-width: 500px), screen and (max-height: 500px) {
+    @media screen and (max-width: 700px), screen and (max-height: 500px) {
         order: 2;
     }
 `;

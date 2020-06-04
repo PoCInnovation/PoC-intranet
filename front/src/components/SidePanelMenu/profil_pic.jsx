@@ -6,7 +6,7 @@ const StyledPP = styled.img`
     height: 40px;
     border-radius: 50%;
     
-    @media screen and (max-width: 500px), screen and (max-height: 500px) {
+    @media screen and (max-width: 700px), screen and (max-height: 500px) {
         position: absolute;
         right: 15px;
         margin: 0;
@@ -25,7 +25,7 @@ const StyledPP = styled.img`
    ensuite on iras stocker dans la db le nom, on concat et c'est good :)
 */
 const getProfilPic = () => {
-    const SERVER = 'http://localhost:3001';
+    const SERVER = 'http://localhost:3000';
     const PP_DIR = 'profil_pic';
     let user = 'pp-github.jpg';
     return `${SERVER}/${PP_DIR}/${user}`;

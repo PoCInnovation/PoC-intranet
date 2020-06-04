@@ -8,7 +8,7 @@ const StyledImageBloc = styled.div`
     flex-direction: column;
     align-items: center; 
     
-    @media screen and (max-width: 500px), screen and (max-height: 500px) {
+    @media screen and (max-width: 700px), screen and (max-height: 500px) {
         flex-direction: row;
         order: 2;
         justify-content: space-between;

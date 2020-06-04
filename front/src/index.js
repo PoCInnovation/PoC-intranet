@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import Menu from "./components/menu/menu.jsx";
+import SidePanel from "./components/SidePanelMenu/side_panel.jsx";
 
 ReactDOM.render(
     <React.StrictMode>
-        <Menu/>
+        <SidePanel/>
     </React.StrictMode>,
     document.getElementById('root')
 );

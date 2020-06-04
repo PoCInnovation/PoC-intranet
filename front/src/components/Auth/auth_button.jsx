@@ -12,7 +12,7 @@ const StyledAuthButton = styled.div`
     
     margin: 0 auto;
     
-    border-radius: 20px;
+    border-radius: 10px;
     border: 1.5px solid;
 
     img {

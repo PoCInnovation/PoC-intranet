@@ -27,6 +27,7 @@ const StyledAuthBlock = styled.div`
     height: 100%;
     width: 30vw;
     min-width: 250px;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;

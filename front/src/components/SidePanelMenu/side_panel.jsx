@@ -1,16 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import ImageBloc from "./image_bloc";
-import Categories from "./categories";
-import BurgerIcon from "./burger_icon";
+import BurgerMenu from "./burger_menu";
 /*
   Todo Faire le menu burger
 */
 
 const StyledMenu = styled.div`
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap%27');
     * {
       padding: 0;
       margin: 0;
+      font-family: 'Montserrat', sans-serif;
     }
 
     display: flex;
@@ -19,12 +20,12 @@ const StyledMenu = styled.div`
     flex-direction: column;
     grid-row-gap: 22.5%;
     align-items: center;
-    width: 23vh;
+    width: 200px;
     height: 100%;
     min-height: 200px;
     box-shadow: 5px 0 50px rgba(0, 0, 0, 0.5);
     
-    @media screen and (max-width: 500px), screen and (max-height: 500px) {
+    @media screen and (max-width: 700px), screen and (max-height: 500px) {
         flex-direction: row;
         justify-content: space-evenly;
         width: 100%;
@@ -36,13 +37,13 @@ const StyledMenu = styled.div`
     }
 `;
 
-function Menu() {
+function SidePanel() {
     return (
         <StyledMenu>
             <ImageBloc/>
-            <BurgerIcon/>
+            <BurgerMenu/>
         </StyledMenu>
     );
 }
 
-export default Menu;
+export default SidePanel;

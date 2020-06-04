@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import SidePanel from "./components/SidePanelMenu/side_panel.jsx";
+// ! import SidePanel from "./components/SidePanelMenu/side_panel.jsx";
+import AuthBlock from "./components/Auth/auth_block";
 
 ReactDOM.render(
     <React.StrictMode>
-        <SidePanel/>
+        <AuthBlock/>
     </React.StrictMode>,
     document.getElementById('root')
 );

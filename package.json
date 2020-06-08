@@ -18,6 +18,8 @@
     "apollo-server": "2.12.0",
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.3",
+    "http": "0.0.1-security",
+    "http.request": "^1.1.0",
     "nexus-prisma": "0.12.0",
     "react-apollo": "^3.1.5",
     "react-router-dom": "^5.2.0"

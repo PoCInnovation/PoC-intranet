@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import getProfilPic from "../../request/get_profil_pic";
 
 const StyledPP = styled.img`
     width: 40px;
@@ -14,22 +15,7 @@ const StyledPP = styled.img`
     }
 `;
 
-/*
-  Todo [PP handling]
-  Récupérer l'image upload, vérifier le content, le modifier..
-  Ensuite on stock le path et on le récupère
-  ! PP GITHUB must be remove !
-  Renommer l'image par un nombre unique pour stocker l'img et pas avoir le nom en dur
-   Todo [PROFIL_PIC DISPLAY]
-   Call à la db, placer les variables server et pp_dir
-   ensuite on iras stocker dans la db le nom, on concat et c'est good :)
-*/
-const getProfilPic = () => {
-    const SERVER = 'http://localhost:3000';
-    const PP_DIR = 'profil_pic';
-    let user = 'pp-github.jpg';
-    return `${SERVER}/${PP_DIR}/${user}`;
-};
+
 
 const ProfilPic = () => {
     return (

@@ -24,7 +24,7 @@ const StyledAuthBlock = styled.div`
       font-family: 'Montserrat', sans-serif;
     }
     
-    height: 100%;
+    height: auto;
     width: 30vw;
     min-width: 250px;
     max-width: 400px;

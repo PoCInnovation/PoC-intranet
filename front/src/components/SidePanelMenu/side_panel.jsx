@@ -20,7 +20,7 @@ const StyledMenu = styled.div`
     flex-direction: column;
     grid-row-gap: 22.5%;
     align-items: center;
-    width: 200px;
+    width: 175px;
     height: 100%;
     min-height: 200px;
     box-shadow: 5px 0 50px rgba(0, 0, 0, 0.5);

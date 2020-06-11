@@ -4,15 +4,15 @@ import ProfilPicture from "./profil_pic";
 import UserBlock from "./user_block";
 
 const StyledProfilHead = styled.div`
-    background-color: #e70101;
-    width: calc(100% - 200px);
+ //   background-color: #e70101;
+    width: calc(100% - 175px);
     height: 230px;
     box-sizing: border-box;
     
     padding: 15px;
     display: grid;
     grid-template-columns: 200px auto;
-    grid-column-gap: 10px;
+    grid-column-gap: 40px;
     align-items: center;
 `;
 

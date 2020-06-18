@@ -13,7 +13,7 @@ sudo docker-compose up -d --build
 npm install
 npx prisma migrate up --experimental
 npx prisma generate
-npm test
+npm run dev
 ```
 
 ## Database

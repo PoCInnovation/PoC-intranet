@@ -3,7 +3,7 @@ import styled from "styled-components";
 import getProjectInfo from "../../request/get_project_infos";
 
 const StyledProjectCard = styled.div`
-display: inline-block;
+  display: inline-block;
   * {
     margin: 0;
     padding: 0;

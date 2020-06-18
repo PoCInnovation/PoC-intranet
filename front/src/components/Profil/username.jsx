@@ -9,13 +9,26 @@ const StyledUserName = styled.p`
     margin: 0 0 10px;
     padding: 0;
     white-space: nowrap;
-`
+`;
 
-const Username = () => {
-    return (
-        <StyledUserName>
-            {getUsername()}
-        </StyledUserName>
-    )
+class Username extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {data: '', isMounted: false}
+    }
+
+    async componentDidMount() {
+        this.setState({data: await getUsername(), isMounted: true})
+
+    }
+
+    render() {
+        return (
+            <StyledUserName>
+                {this.state.data}
+            </StyledUserName>
+        );
+    }
 }
-export default Username
+
+export default Username;

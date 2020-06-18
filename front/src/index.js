@@ -1,15 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
-import SidePanel from "./components/SidePanelMenu/side_panel.jsx";
+import AuthBlock from "./components/Auth/auth_block";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import SidePanel from "./components/SidePanelMenu/side_panel";
 import ProfilBlock from "./components/Profil/page";
 
 ReactDOM.render(
     <React.StrictMode>
-        <SidePanel/>
-        <ProfilBlock/>
+        <Router>
+            <Route exact path={"/"}>
+                <AuthBlock/>
+            </Route>
+            <Route path={"/profil"}>
+                <SidePanel/>
+                <ProfilBlock/>
+            </Route>
+        </Router>
     </React.StrictMode>,
     document.getElementById('root')
 );

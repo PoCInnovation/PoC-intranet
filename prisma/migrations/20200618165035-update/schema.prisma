@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -22,7 +22,6 @@ model Project {
     id          String    @default(uuid()) @id
     name        String    @unique
     description String?
-    image       String?
     status      Status
     airtable    String?
     github      String?
@@ -33,7 +32,7 @@ model Project {
 model Role {
     id          String   @default(uuid()) @id
     name        String   @unique
-    color       String?
+    color       String
     admin       Boolean? @default(false)
     add_role    Boolean? @default(false)
     recommend   Boolean? @default(false)
@@ -47,7 +46,6 @@ model Role {
 model User {
     id           String      @default(uuid()) @id
     mail         String      @unique
-    profil_pic   String?
     token        String?     @unique
     roles        Role[]      @relation(references: [name])
     projects     Project[]   @relation(references: [name])

@@ -1,50 +1,67 @@
-import React from "react";
+import React, {Component} from "react";
 import styled from "styled-components";
 import getProfilPic from "../../request/get_profil_pic";
+import {uploadProfilPic} from "../../request/uploadImage";
+import axios from 'axios';
+import conf from "../../config";
 
 const StyledProfilPicture = styled.img`
     border-radius: 50%;
-    width: 100%;
-    height: 100%;
+    width: 180px;
+    height: 180px;
+    border: solid 3px black;
 `;
 
-const ProfilPicture = () => {
-    let uploadedImage = React.useRef(null);
-    const imageUploader = React.useRef(null);
+class ProfilPicture extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {selectedFile: null};
+        this.changeHandler = this.changeHandler.bind(this);
+        this.imageUploader = React.createRef();
+    }
 
-    const editPicture = (event) => {
-        let [file] = event.target.files;
+    async componentDidMount() {
+        this.setState({
+            selectedFile: await getProfilPic(sessionStorage.getItem('mail'))
+        });
+    }
 
-        // ! image upload
-        if (file) {
-            const reader = new FileReader();
-            const {current} = uploadedImage;
-            current.file = file;
-            reader.onload = (event) => {
-                current.src = event.target.result;
-                console.log(event.target.result);
-            };
-            reader.readAsDataURL(file);
-        }
+    async changeHandler(event) {
+        const file = event.target.files[0];
+        const data = new FormData();
+        data.append('file', file);
 
+        // * Send file to server
+        await axios.post(`${conf.back}/upload`, data, {})
+            .then(async (res) => {
+                await uploadProfilPic(res.data.filename, sessionStorage.getItem('mail'));
+            });
 
-    };
-    return (
-        <>
-            <input type={"file"}
-                   accept={"image/*"}
-                   onChange={editPicture}
-                   ref={imageUploader}
-                   multiple={"false"}
-                   style={{display: "none"}}/>
-            <StyledProfilPicture
-                src={getProfilPic()}
-                ref={uploadedImage}
-                alt="profil picture"
-                onClick={() => imageUploader.current.click()}
-            />
-        </>
-    );
-};
+        // * Reader img and set state
+        const reader = await new FileReader();
+        reader.onload = (event) => {
+            this.setState({selectedFile: event.target.result});
+        };
+        await reader.readAsDataURL(file);
+    }
+
+    render() {
+        return (
+            <>
+                <input type={"file"}
+                       accept={"image/*"}
+                       multiple={false}
+                       ref={this.imageUploader}
+                       style={{display: "none"}}
+                       onChange={this.changeHandler}/>
+                <StyledProfilPicture
+                    src={this.state.selectedFile}
+                    alt="profil picture"
+                    onClick={() => this.imageUploader.current.click()}
+                />
+            </>
+        );
+    }
+}
 
 export default ProfilPicture;

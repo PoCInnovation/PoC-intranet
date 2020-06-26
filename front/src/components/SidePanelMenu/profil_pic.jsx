@@ -3,8 +3,8 @@ import styled from "styled-components";
 import getProfilPic from "../../request/get_profil_pic";
 
 const StyledPP = styled.img`
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     
     @media screen and (max-width: 700px), screen and (max-height: 500px) {
@@ -16,13 +16,25 @@ const StyledPP = styled.img`
 `;
 
 
+class ProfilPic extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {picture: null}
+    }
 
-const ProfilPic = () => {
-    return (
-        <StyledPP
-            src={getProfilPic()}
-            alt="profil picture"/>
-    );
-};
+    async componentDidMount() {
+        this.setState({
+            picture: await getProfilPic(sessionStorage.getItem('mail'))
+        })
+    }
+
+    render() {
+        return (
+            <StyledPP
+                src={this.state.picture}
+                alt="profil picture"/>
+        );
+    }
+}
 
 export default ProfilPic;

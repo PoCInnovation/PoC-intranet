@@ -43,15 +43,19 @@ class RolesBlock extends React.Component {
     }
 
     async componentDidMount() {
-        this.setState({data: await getRolesProperty(), isMounted: true});
+        this.setState({data: await getRolesProperty(sessionStorage.getItem('mail')), isMounted: true});
     }
 
     renderRoles() {
-        return this.state.data.roles.map((role) => {
-            return (
-                <StyledRole color={role.color}>{role.name}</StyledRole>
-            );
-        });
+        if (this.state.data.roles) {
+            return this.state.data.roles.map((role, i) => {
+                return (
+                    <StyledRole color={role.color} key={i}>{role.name}</StyledRole>
+                );
+            });
+        } else {
+            return (<div/>)
+        }
     }
 
     render() {

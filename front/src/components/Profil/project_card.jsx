@@ -12,10 +12,11 @@ const StyledProjectCard = styled.div`
   color: #373737;  
   padding: 15px;
   overflow: hidden;
-  width: 240px;
+  min-width: 240px;
+  width: 100%;
   height: 180px;
   border: 1.5px #b4b4b4 solid;
-  border-radius: 15px;
+  border-radius: 10px;
   margin-bottom: 15px;
     
   h1 {
@@ -36,7 +37,7 @@ const StyledProjectBlock = styled.div`
 //  background-color: antiquewhite;
   
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-between;
   
@@ -49,18 +50,22 @@ class ProjectBlock extends Component {
     }
 
     async componentDidMount() {
-        this.setState({data: await getProjectInfo(), isMounted: true});
+        this.setState({data: await getProjectInfo(sessionStorage.getItem('mail')), isMounted: true});
     }
 
     renderProject() {
-        return this.state.data.projects.map((project) => {
-            return (
-                <StyledProjectCard>
-                    <h1>{project.name}</h1>
-                    <p>{project.description}</p>
-                </StyledProjectCard>
-            );
-        });
+        if (this.state.data.projects) {
+            return this.state.data.projects.map((project, i) => {
+                return (
+                    <StyledProjectCard key={i}>
+                        <h1>{project.name}</h1>
+                        <p>{project.description}</p>
+                    </StyledProjectCard>
+                );
+            });
+        } else {
+            return (<div/>)
+        }
     }
 
     render() {

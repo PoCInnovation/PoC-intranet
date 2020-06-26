@@ -1,18 +1,31 @@
 import conf from '../config'
+import client from "../apollo_client";
+import gql from 'graphql-tag'
 
-/*
-  Todo [PP handling]
-  Récupérer l'image upload, vérifier le content, le modifier..
-  Ensuite on stock le path et on le récupère
-  ! PP GITHUB must be remove !
-  Renommer l'image par un nombre unique pour stocker l'img et pas avoir le nom en dur
-   Todo [PROFIL_PIC DISPLAY]
-   Call à la db, placer les variables server et pp_dir
-   ensuite on iras stocker dans la db le nom, on concat et c'est good :)
-*/
-const getProfilPic = () => {
-    let user = 'pp-github.jpg';
-    return `${conf.server}/${conf.directory.profil}/${user}`;
+const GET_PROFIL_PIC = gql`
+    query getPP($mail: String!) {
+        user(where: {mail: $mail}) {
+            id
+            mail
+            profil_pic
+        }
+    }
+`
+
+const getProfilPic = async (mail) => {
+    let userPP = 'default_profil_pic.png';
+
+    const userInfo = await client.query({
+        query: GET_PROFIL_PIC,
+        variables: {
+            mail
+        }
+    })
+
+    if (userInfo.data.user.profil_pic) {
+        userPP = userInfo.data.user.profil_pic;
+    }
+    return `${conf.server}/${conf.directory.profil}/${userPP}`;
 };
 
 export default getProfilPic;

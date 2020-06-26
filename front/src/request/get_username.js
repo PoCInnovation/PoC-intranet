@@ -1,16 +1,21 @@
-import getCookie from "../get_cookie";
-import getUserInfoFromMSGraph from "./call_ms_api";
+import client from "../apollo_client";
+import gql from  'graphql-tag'
 
-
-const getUsername = async () => {
-    const token = getCookie('token')
-
-    if (token) {
-        const userInfo = await getUserInfoFromMSGraph(token)
-        if (userInfo.displayName !== undefined)
-            return userInfo.displayName
+const GET_USER = gql`
+    query GetUser($mail: String!) {
+        user(where: {mail: $mail}) {
+            mail
+        }
     }
-    return 'Unknown dude';
+`
+
+const getUsername = async (mail) => {
+    return client.query({
+        query: GET_USER,
+        variables: {
+            mail
+        }
+    })
 }
 
 export default getUsername;

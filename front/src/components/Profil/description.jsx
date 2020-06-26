@@ -12,7 +12,7 @@ const StyledDescription = styled.textarea`
 
 const Description = () => {
     return (
-        <StyledDescription placeholder="Description..." value={null}/>
+        <StyledDescription placeholder="Description..." defaultValue={""}/>
     );
 };
 

@@ -39,8 +39,10 @@ export interface NexusGenInputs {
   }
   ProjectCreateInput: { // input type
     airtable?: string | null; // String
+    description?: string | null; // String
     github?: string | null; // String
     id?: string | null; // String
+    image?: string | null; // String
     name: string; // String!
     status: NexusGenEnums['Status']; // Status!
     users?: NexusGenInputs['UserCreateManyWithoutProjectsInput'] | null; // UserCreateManyWithoutProjectsInput
@@ -51,8 +53,10 @@ export interface NexusGenInputs {
   }
   ProjectCreateWithoutUsersInput: { // input type
     airtable?: string | null; // String
+    description?: string | null; // String
     github?: string | null; // String
     id?: string | null; // String
+    image?: string | null; // String
     name: string; // String!
     status: NexusGenEnums['Status']; // Status!
   }
@@ -64,8 +68,10 @@ export interface NexusGenInputs {
   ProjectScalarWhereInput: { // input type
     airtable?: NexusGenInputs['NullableStringFilter'] | null; // NullableStringFilter
     AND?: NexusGenInputs['ProjectScalarWhereInput'][] | null; // [ProjectScalarWhereInput!]
+    description?: NexusGenInputs['NullableStringFilter'] | null; // NullableStringFilter
     github?: NexusGenInputs['NullableStringFilter'] | null; // NullableStringFilter
     id?: NexusGenInputs['UUIDFilter'] | null; // UUIDFilter
+    image?: NexusGenInputs['NullableStringFilter'] | null; // NullableStringFilter
     name?: NexusGenInputs['StringFilter'] | null; // StringFilter
     NOT?: NexusGenInputs['ProjectScalarWhereInput'][] | null; // [ProjectScalarWhereInput!]
     OR?: NexusGenInputs['ProjectScalarWhereInput'][] | null; // [ProjectScalarWhereInput!]
@@ -74,16 +80,20 @@ export interface NexusGenInputs {
   }
   ProjectUpdateInput: { // input type
     airtable?: string | null; // String
+    description?: string | null; // String
     github?: string | null; // String
     id?: string | null; // String
+    image?: string | null; // String
     name?: string | null; // String
     status?: NexusGenEnums['Status'] | null; // Status
     users?: NexusGenInputs['UserUpdateManyWithoutProjectsInput'] | null; // UserUpdateManyWithoutProjectsInput
   }
   ProjectUpdateManyDataInput: { // input type
     airtable?: string | null; // String
+    description?: string | null; // String
     github?: string | null; // String
     id?: string | null; // String
+    image?: string | null; // String
     name?: string | null; // String
     status?: NexusGenEnums['Status'] | null; // Status
   }
@@ -108,8 +118,10 @@ export interface NexusGenInputs {
   }
   ProjectUpdateWithoutUsersDataInput: { // input type
     airtable?: string | null; // String
+    description?: string | null; // String
     github?: string | null; // String
     id?: string | null; // String
+    image?: string | null; // String
     name?: string | null; // String
     status?: NexusGenEnums['Status'] | null; // Status
   }
@@ -121,8 +133,10 @@ export interface NexusGenInputs {
   ProjectWhereInput: { // input type
     airtable?: NexusGenInputs['NullableStringFilter'] | null; // NullableStringFilter
     AND?: NexusGenInputs['ProjectWhereInput'][] | null; // [ProjectWhereInput!]
+    description?: NexusGenInputs['NullableStringFilter'] | null; // NullableStringFilter
     github?: NexusGenInputs['NullableStringFilter'] | null; // NullableStringFilter
     id?: NexusGenInputs['UUIDFilter'] | null; // UUIDFilter
+    image?: NexusGenInputs['NullableStringFilter'] | null; // NullableStringFilter
     name?: NexusGenInputs['StringFilter'] | null; // StringFilter
     NOT?: NexusGenInputs['ProjectWhereInput'][] | null; // [ProjectWhereInput!]
     OR?: NexusGenInputs['ProjectWhereInput'][] | null; // [ProjectWhereInput!]
@@ -137,6 +151,7 @@ export interface NexusGenInputs {
     add_member?: boolean | null; // Boolean
     add_role?: boolean | null; // Boolean
     admin?: boolean | null; // Boolean
+    color?: string | null; // String
     create_pro?: boolean | null; // Boolean
     id?: string | null; // String
     name: string; // String!
@@ -152,6 +167,7 @@ export interface NexusGenInputs {
     add_member?: boolean | null; // Boolean
     add_role?: boolean | null; // Boolean
     admin?: boolean | null; // Boolean
+    color?: string | null; // String
     create_pro?: boolean | null; // Boolean
     id?: string | null; // String
     name: string; // String!
@@ -168,6 +184,7 @@ export interface NexusGenInputs {
     add_role?: NexusGenInputs['NullableBooleanFilter'] | null; // NullableBooleanFilter
     admin?: NexusGenInputs['NullableBooleanFilter'] | null; // NullableBooleanFilter
     AND?: NexusGenInputs['RoleScalarWhereInput'][] | null; // [RoleScalarWhereInput!]
+    color?: NexusGenInputs['NullableStringFilter'] | null; // NullableStringFilter
     create_pro?: NexusGenInputs['NullableBooleanFilter'] | null; // NullableBooleanFilter
     id?: NexusGenInputs['UUIDFilter'] | null; // UUIDFilter
     name?: NexusGenInputs['StringFilter'] | null; // StringFilter
@@ -181,6 +198,7 @@ export interface NexusGenInputs {
     add_member?: boolean | null; // Boolean
     add_role?: boolean | null; // Boolean
     admin?: boolean | null; // Boolean
+    color?: string | null; // String
     create_pro?: boolean | null; // Boolean
     id?: string | null; // String
     name?: string | null; // String
@@ -192,6 +210,7 @@ export interface NexusGenInputs {
     add_member?: boolean | null; // Boolean
     add_role?: boolean | null; // Boolean
     admin?: boolean | null; // Boolean
+    color?: string | null; // String
     create_pro?: boolean | null; // Boolean
     id?: string | null; // String
     name?: string | null; // String
@@ -221,6 +240,7 @@ export interface NexusGenInputs {
     add_member?: boolean | null; // Boolean
     add_role?: boolean | null; // Boolean
     admin?: boolean | null; // Boolean
+    color?: string | null; // String
     create_pro?: boolean | null; // Boolean
     id?: string | null; // String
     name?: string | null; // String
@@ -237,6 +257,7 @@ export interface NexusGenInputs {
     add_role?: NexusGenInputs['NullableBooleanFilter'] | null; // NullableBooleanFilter
     admin?: NexusGenInputs['NullableBooleanFilter'] | null; // NullableBooleanFilter
     AND?: NexusGenInputs['RoleWhereInput'][] | null; // [RoleWhereInput!]
+    color?: NexusGenInputs['NullableStringFilter'] | null; // NullableStringFilter
     create_pro?: NexusGenInputs['NullableBooleanFilter'] | null; // NullableBooleanFilter
     id?: NexusGenInputs['UUIDFilter'] | null; // UUIDFilter
     name?: NexusGenInputs['StringFilter'] | null; // StringFilter
@@ -279,6 +300,7 @@ export interface NexusGenInputs {
   UserCreateInput: { // input type
     id?: string | null; // String
     mail: string; // String!
+    profil_pic?: string | null; // String
     projects?: NexusGenInputs['ProjectCreateManyWithoutUsersInput'] | null; // ProjectCreateManyWithoutUsersInput
     roles?: NexusGenInputs['RoleCreateManyWithoutUsersInput'] | null; // RoleCreateManyWithoutUsersInput
     token?: string | null; // String
@@ -294,12 +316,14 @@ export interface NexusGenInputs {
   UserCreateWithoutProjectsInput: { // input type
     id?: string | null; // String
     mail: string; // String!
+    profil_pic?: string | null; // String
     roles?: NexusGenInputs['RoleCreateManyWithoutUsersInput'] | null; // RoleCreateManyWithoutUsersInput
     token?: string | null; // String
   }
   UserCreateWithoutRolesInput: { // input type
     id?: string | null; // String
     mail: string; // String!
+    profil_pic?: string | null; // String
     projects?: NexusGenInputs['ProjectCreateManyWithoutUsersInput'] | null; // ProjectCreateManyWithoutUsersInput
     token?: string | null; // String
   }
@@ -314,6 +338,7 @@ export interface NexusGenInputs {
     mail?: NexusGenInputs['StringFilter'] | null; // StringFilter
     NOT?: NexusGenInputs['UserScalarWhereInput'][] | null; // [UserScalarWhereInput!]
     OR?: NexusGenInputs['UserScalarWhereInput'][] | null; // [UserScalarWhereInput!]
+    profil_pic?: NexusGenInputs['NullableStringFilter'] | null; // NullableStringFilter
     projects?: NexusGenInputs['ProjectFilter'] | null; // ProjectFilter
     roles?: NexusGenInputs['RoleFilter'] | null; // RoleFilter
     token?: NexusGenInputs['NullableStringFilter'] | null; // NullableStringFilter
@@ -321,6 +346,7 @@ export interface NexusGenInputs {
   UserUpdateInput: { // input type
     id?: string | null; // String
     mail?: string | null; // String
+    profil_pic?: string | null; // String
     projects?: NexusGenInputs['ProjectUpdateManyWithoutUsersInput'] | null; // ProjectUpdateManyWithoutUsersInput
     roles?: NexusGenInputs['RoleUpdateManyWithoutUsersInput'] | null; // RoleUpdateManyWithoutUsersInput
     token?: string | null; // String
@@ -328,6 +354,7 @@ export interface NexusGenInputs {
   UserUpdateManyDataInput: { // input type
     id?: string | null; // String
     mail?: string | null; // String
+    profil_pic?: string | null; // String
     token?: string | null; // String
   }
   UserUpdateManyWithWhereNestedInput: { // input type
@@ -367,12 +394,14 @@ export interface NexusGenInputs {
   UserUpdateWithoutProjectsDataInput: { // input type
     id?: string | null; // String
     mail?: string | null; // String
+    profil_pic?: string | null; // String
     roles?: NexusGenInputs['RoleUpdateManyWithoutUsersInput'] | null; // RoleUpdateManyWithoutUsersInput
     token?: string | null; // String
   }
   UserUpdateWithoutRolesDataInput: { // input type
     id?: string | null; // String
     mail?: string | null; // String
+    profil_pic?: string | null; // String
     projects?: NexusGenInputs['ProjectUpdateManyWithoutUsersInput'] | null; // ProjectUpdateManyWithoutUsersInput
     token?: string | null; // String
   }
@@ -392,6 +421,7 @@ export interface NexusGenInputs {
     mail?: NexusGenInputs['StringFilter'] | null; // StringFilter
     NOT?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
     OR?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
+    profil_pic?: NexusGenInputs['NullableStringFilter'] | null; // NullableStringFilter
     projects?: NexusGenInputs['ProjectFilter'] | null; // ProjectFilter
     roles?: NexusGenInputs['RoleFilter'] | null; // RoleFilter
     token?: NexusGenInputs['NullableStringFilter'] | null; // NullableStringFilter
@@ -408,6 +438,13 @@ export interface NexusGenEnums {
 }
 
 export interface NexusGenRootTypes {
+  File: { // root type
+    encoding: string; // String!
+    filename: string; // String!
+    id: string; // ID!
+    mimetype: string; // String!
+    path: string; // String!
+  }
   Mutation: {};
   Project: prisma.Project;
   Query: {};
@@ -419,6 +456,7 @@ export interface NexusGenRootTypes {
   Boolean: boolean;
   ID: string;
   UUID: any;
+  Upload: any;
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
@@ -478,6 +516,13 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
 }
 
 export interface NexusGenFieldTypes {
+  File: { // field return type
+    encoding: string; // String!
+    filename: string; // String!
+    id: string; // ID!
+    mimetype: string; // String!
+    path: string; // String!
+  }
   Mutation: { // field return type
     createProject: NexusGenRootTypes['Project']; // Project!
     createRole: NexusGenRootTypes['Role']; // Role!
@@ -488,12 +533,16 @@ export interface NexusGenFieldTypes {
     LinkUserToProject: NexusGenRootTypes['User'][]; // [User!]!
     LinkUserToRole: NexusGenRootTypes['User'][]; // [User!]!
     updateProject: NexusGenRootTypes['Project'] | null; // Project
-    updateUser: NexusGenRootTypes['Role'] | null; // Role
+    updateRole: NexusGenRootTypes['Role'] | null; // Role
+    updateUser: NexusGenRootTypes['User'] | null; // User
+    uploadFile: NexusGenRootTypes['File']; // File!
   }
   Project: { // field return type
     airtable: string | null; // String
+    description: string | null; // String
     github: string | null; // String
     id: string; // String!
+    image: string | null; // String
     name: string; // String!
     status: NexusGenEnums['Status']; // Status!
     users: NexusGenRootTypes['User'][]; // [User!]!
@@ -512,6 +561,7 @@ export interface NexusGenFieldTypes {
     add_member: boolean | null; // Boolean
     add_role: boolean | null; // Boolean
     admin: boolean | null; // Boolean
+    color: string | null; // String
     create_pro: boolean | null; // Boolean
     id: string; // String!
     name: string; // String!
@@ -522,6 +572,7 @@ export interface NexusGenFieldTypes {
   User: { // field return type
     id: string; // String!
     mail: string; // String!
+    profil_pic: string | null; // String
     projects: NexusGenRootTypes['Project'][]; // [Project!]!
     roles: NexusGenRootTypes['Role'][]; // [Role!]!
     token: string | null; // String
@@ -560,9 +611,16 @@ export interface NexusGenArgTypes {
       data: NexusGenInputs['ProjectUpdateInput']; // ProjectUpdateInput!
       where: NexusGenInputs['ProjectWhereUniqueInput']; // ProjectWhereUniqueInput!
     }
-    updateUser: { // args
+    updateRole: { // args
       data: NexusGenInputs['RoleUpdateInput']; // RoleUpdateInput!
       where: NexusGenInputs['RoleWhereUniqueInput']; // RoleWhereUniqueInput!
+    }
+    updateUser: { // args
+      data: NexusGenInputs['UserUpdateInput']; // UserUpdateInput!
+      where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
+    }
+    uploadFile: { // args
+      file: any; // Upload!
     }
   }
   Project: {
@@ -628,7 +686,7 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Mutation" | "Project" | "Query" | "Role" | "User";
+export type NexusGenObjectNames = "File" | "Mutation" | "Project" | "Query" | "Role" | "User";
 
 export type NexusGenInputNames = "NullableBooleanFilter" | "NullableStringFilter" | "ProjectCreateInput" | "ProjectCreateManyWithoutUsersInput" | "ProjectCreateWithoutUsersInput" | "ProjectFilter" | "ProjectScalarWhereInput" | "ProjectUpdateInput" | "ProjectUpdateManyDataInput" | "ProjectUpdateManyWithWhereNestedInput" | "ProjectUpdateManyWithoutUsersInput" | "ProjectUpdateWithWhereUniqueWithoutUsersInput" | "ProjectUpdateWithoutUsersDataInput" | "ProjectUpsertWithWhereUniqueWithoutUsersInput" | "ProjectWhereInput" | "ProjectWhereUniqueInput" | "RoleCreateInput" | "RoleCreateManyWithoutUsersInput" | "RoleCreateWithoutUsersInput" | "RoleFilter" | "RoleScalarWhereInput" | "RoleUpdateInput" | "RoleUpdateManyDataInput" | "RoleUpdateManyWithWhereNestedInput" | "RoleUpdateManyWithoutUsersInput" | "RoleUpdateWithWhereUniqueWithoutUsersInput" | "RoleUpdateWithoutUsersDataInput" | "RoleUpsertWithWhereUniqueWithoutUsersInput" | "RoleWhereInput" | "RoleWhereUniqueInput" | "StringFilter" | "UUIDFilter" | "UserCreateInput" | "UserCreateManyWithoutProjectsInput" | "UserCreateManyWithoutRolesInput" | "UserCreateWithoutProjectsInput" | "UserCreateWithoutRolesInput" | "UserFilter" | "UserScalarWhereInput" | "UserUpdateInput" | "UserUpdateManyDataInput" | "UserUpdateManyWithWhereNestedInput" | "UserUpdateManyWithoutProjectsInput" | "UserUpdateManyWithoutRolesInput" | "UserUpdateWithWhereUniqueWithoutProjectsInput" | "UserUpdateWithWhereUniqueWithoutRolesInput" | "UserUpdateWithoutProjectsDataInput" | "UserUpdateWithoutRolesDataInput" | "UserUpsertWithWhereUniqueWithoutProjectsInput" | "UserUpsertWithWhereUniqueWithoutRolesInput" | "UserWhereInput" | "UserWhereUniqueInput";
 
@@ -636,7 +694,7 @@ export type NexusGenEnumNames = "Status";
 
 export type NexusGenInterfaceNames = never;
 
-export type NexusGenScalarNames = "Boolean" | "Float" | "ID" | "Int" | "String" | "UUID";
+export type NexusGenScalarNames = "Boolean" | "Float" | "ID" | "Int" | "String" | "UUID" | "Upload";
 
 export type NexusGenUnionNames = never;
 

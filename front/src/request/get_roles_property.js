@@ -1,14 +1,27 @@
-const getRolesProperty = async () => {
-    return {
-        roles: [
-            {name: 'Résident', color: '#e74c3c'},
-            {name: 'Président', color: '#3498db'},
-            {name: 'Responsable', color: '#2ecc71'},
-            {name: 'Software', color: '#f39c12'},
-    //        {name: 'Hardware', color: '#95a5a6'},
-    //        {name: 'Ancien', color: '#8e44ad'}
-        ]
-    };
+import client from "../apollo_client";
+import gql from 'graphql-tag'
+
+const GET_ROLE_PROPERTY = gql`
+    query GetUser($mail: String!) {
+        user(where: {mail: $mail}) {
+            id
+            mail
+            roles {
+                name
+                color
+            }
+        }
+    }
+`
+
+const getRolesProperty = async (mail) => {
+    const userRoles = await client.query({
+        query: GET_ROLE_PROPERTY,
+        variables: {
+            mail
+        }
+    })
+    return userRoles.data.user;
 };
 
 export default getRolesProperty;

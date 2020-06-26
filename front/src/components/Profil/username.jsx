@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import getUsername from "../../request/get_username";
+import getCookie from "../../get_cookie";
+import getUserInfoFromMSGraph from "../../request/call_ms_api";
+import {withRouter} from "react-router-dom";
 
 const StyledUserName = styled.p`
     font-size: 50px;
@@ -14,21 +17,16 @@ const StyledUserName = styled.p`
 class Username extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {data: '', isMounted: false}
-    }
-
-    async componentDidMount() {
-        this.setState({data: await getUsername(), isMounted: true})
-
+        this.name = sessionStorage.getItem('username');
     }
 
     render() {
         return (
             <StyledUserName>
-                {this.state.data}
+                {this.name}
             </StyledUserName>
         );
     }
 }
 
-export default Username;
+export default withRouter(Username);

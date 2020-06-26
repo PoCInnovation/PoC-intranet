@@ -6,6 +6,8 @@ import config from "../../config";
 import {withRouter} from "react-router-dom";
 import getCookie from "../../get_cookie";
 import getUserInfoFromMSGraph from "../../request/call_ms_api";
+import getUsername from "../../request/get_username";
+import registerUser from "../../request/registerUser";
 
 const StyledLogo = styled.img`
     width: 100px;
@@ -50,31 +52,58 @@ const StyledErrorMessage = styled.p`
 class AuthBlock extends Component {
     constructor(props) {
         super(props);
-        this.state = {valid: true};
+        this.state = {valid: true, error_message: ''};
     }
 
-    async componentWillMount() {
+    async loadData(userInfo) {
+        sessionStorage.setItem('username', userInfo.displayName);
+        sessionStorage.setItem('mail', userInfo.mail);
+
+        const userExist = await getUsername(userInfo.mail);
+
+        if (!userExist.data.user) {
+            if (!await registerUser(userInfo.mail))
+                return 'server error';
+        }
+        return undefined;
+    }
+
+    async componentDidMount() {
         const token = getCookie('token');
-        if (token) {
-            await getUserInfoFromMSGraph(token);
-            this.props.history.push('/profil');
+        const userInfo = await getUserInfoFromMSGraph(token);
+
+        if (!userInfo.error) {
+            const log = await this.loadData(userInfo);
+            if (!log) {
+                this.props.history.push('/profil');
+            }
         }
     }
 
+    // Stocker userInfo dans session
     async authHandler(err, data) {
         if (err === null) {
-            this.setState(() => this.state.valid = true);
-            await getUserInfoFromMSGraph(data.authResponseWithAccessToken.accessToken);
-            document.cookie = 'token=' + data.authResponseWithAccessToken.accessToken + ";path=/";
-            this.props.history.push('/profil');
+            const userInfo = await getUserInfoFromMSGraph(data.authResponseWithAccessToken.accessToken);
+
+            this.setState(() => this.state.valid = (!userInfo.error));
+            if (this.state.valid) {
+                document.cookie = 'token=' + data.authResponseWithAccessToken.accessToken + ";path=/";
+                const log = await this.loadData(userInfo);
+
+                if (!log) {
+                    this.props.history.push('/profil');
+                } else {
+                    this.setState({valid: false, error_message: 'Server Error'});
+                }
+            }
         } else {
-            this.setState(() => this.state.valid = false);
+            this.setState({valid: false, error_message: 'Login Failed'});
         }
     }
 
     renderFail(valid) {
         if (valid === false) {
-            return (<StyledErrorMessage>Login failed</StyledErrorMessage>);
+            return (<StyledErrorMessage>{this.data.error_message}</StyledErrorMessage>);
         } else {
             return (<div/>);
         }
@@ -86,7 +115,7 @@ class AuthBlock extends Component {
                 <LogoPoc/>
                 <MicrosoftLogin clientId={config.client_id}
                                 authCallback={(err, data) => {
-                                    this.authHandler(err, data);
+                                    this.authHandler(err, data).then();
                                 }}
                                 children={AuthButton()}/>
                 {this.renderFail(this.state.valid)}

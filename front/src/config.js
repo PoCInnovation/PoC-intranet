@@ -1,5 +1,7 @@
 export default {
     server: 'http://localhost:3000',
+    back: 'http://localhost:4000',
+    public_url: 'http://localhost:3000/profil_pic',
     directory: {
         profil: 'profil_pic'
     },

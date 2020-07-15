@@ -49,6 +49,6 @@ model User {
     mail         String      @unique
     profil_pic   String?
     token        String?     @unique
-    roles        Role[]      @relation(references: [name])
-    projects     Project[]   @relation(references: [name])
+    roles        Role[]      @relation(references: [id])
+    projects     Project[]   @relation(references: [id])
 }

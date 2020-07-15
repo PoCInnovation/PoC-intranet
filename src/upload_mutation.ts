@@ -1,6 +1,6 @@
 import { arg, mutationField } from "@nexus/schema";
 import fs from 'fs'
-
+/*
 export const uploadFile = mutationField("uploadFile", {
   type: "File",
   args: {
@@ -15,3 +15,5 @@ export const uploadFile = mutationField("uploadFile", {
     })
   }
 });
+$/
+ */

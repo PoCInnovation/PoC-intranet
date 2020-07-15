@@ -2,11 +2,13 @@ import { createWriteStream } from "fs";
 import { resolve } from "path";
 import { sync } from "mkdirp";
 
+/*
+
 const uploadDir = resolve(__dirname, "../../front/public");
 
 sync(uploadDir);
 
-const storeUpload = async ({ stream, filename }) => {
+const storeUpload = async ({ (stream: any, filename }) => {
   const path = `${uploadDir}/${filename}`;
 
   return new Promise((resolve, reject) =>
@@ -22,3 +24,5 @@ export async function processUpload(file) {
   const path = await storeUpload({ stream, filename });
   return { filename, mimetype, encoding, path };
 }
+
+*/

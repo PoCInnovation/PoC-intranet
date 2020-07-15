@@ -1,10 +1,20 @@
-import { nexusPrismaPlugin } from 'nexus-prisma';
-import { arg, makeSchema, mutationField, objectType, stringArg } from '@nexus/schema';
+import { nexusSchemaPrisma } from 'nexus-plugin-prisma/schema';
+import { prisma } from "nexus-plugin-prisma";
+import { PrismaClient } from "nexus-plugin-prisma/client";
+import { use } from 'nexus';
+import { makeSchema, objectType, stringArg } from '@nexus/schema';
+import * as path from 'path'
+
+use(
+    prisma({
+      client: {instance: new PrismaClient()}
+    })
+);
+
 import { User } from "./types/user";
 import { Role } from "./types/role";
 import { Project } from "./types/project";
 import { File, Upload } from "./types/file";
-import { uploadFile } from "./upload_mutation";
 
 const Query = objectType({
   name: 'Query',
@@ -21,7 +31,7 @@ const Query = objectType({
       args: { searchRole: stringArg() },
       resolve: (_, { searchRole }, ctx) => {
         return ctx.prisma.role.findMany({
-          where: { name: searchRole },
+          where: { name: searchRole! },
           include: { users: true }
         });
       }
@@ -32,7 +42,7 @@ const Query = objectType({
       args: { searchProject: stringArg() },
       resolve: (_, { searchProject }, ctx) => {
         return ctx.prisma.project.findMany({
-          where: { name: searchProject },
+          where: { name: searchProject! },
           include: { users: true }
         });
       }
@@ -87,25 +97,27 @@ const Mutation = objectType({
 });
 
 export const schema = makeSchema({
-  types: [Query, Mutation, Project, User, Role, Upload, File, uploadFile],
-  plugins: [nexusPrismaPlugin()],
+  types: [Query, Mutation, Project, User, Role, Upload, File],
+  plugins: [nexusSchemaPrisma({
+    experimentalCRUD: true
+  })],
   outputs: {
-    schema: __dirname + '/../schema.graphql',
-    typegen: __dirname + '/generated/nexus.ts',
+    schema: path.join(__dirname + './../schema.graphql'),
+    typegen: path.join(__dirname + './generated/nexus.ts'),
   },
   typegenAutoConfig: {
-    contextType: 'Context.Context',
+    contextType: 'Context.context',
     sources: [
       {
-        source: '@prisma/client',
-        alias: 'prisma',
+        source: './node_modules/nexus-plugin-prisma/client',
+        alias: 'prisma'
       },
       {
         source: require.resolve('./context'),
-        alias: 'Context',
-      },
-    ],
-  },
+        alias: 'Context'
+      }
+    ]
+  }
 });
 
 

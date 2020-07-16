@@ -96,13 +96,13 @@ export const schema = makeSchema({
 	})],
 	outputs: {
 		schema: path.join(__dirname + './../schema.graphql'),
-		typegen: path.join(__dirname + './generated/nexus.ts'),
+		typegen: path.join(__dirname + '/generated/nexus.ts'),
 	},
 	typegenAutoConfig: {
 		contextType: 'Context.context',
 		sources: [
 			{
-				source: '/node_modules/nexus-plugin-prisma/client',
+				source: './node_modules/nexus-plugin-prisma/client',
 				alias: 'prisma'
 			},
 			{

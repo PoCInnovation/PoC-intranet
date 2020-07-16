@@ -1,0 +1,17 @@
+version: '3.3'
+
+services:
+  db:
+    image: postgres:12.0-alpine
+    container_name: intra-databasePSQL
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=intra
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=intra
+
+volumes:
+  postgres_data:

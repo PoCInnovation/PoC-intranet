@@ -103,7 +103,7 @@ class AuthBlock extends Component {
 
     renderFail(valid) {
         if (valid === false) {
-            return (<StyledErrorMessage>{this.data.error_message}</StyledErrorMessage>);
+            return (<StyledErrorMessage>{this.state.error_message}</StyledErrorMessage>);
         } else {
             return (<div/>);
         }

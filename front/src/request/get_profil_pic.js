@@ -22,9 +22,11 @@ const getProfilPic = async (mail) => {
         }
     })
 
-    if (userInfo.data.user.profil_pic) {
-        userPP = userInfo.data.user.profil_pic;
+    const user = userInfo.data.user;
+    if (user.profil_pic) {
+        userPP = user.profil_pic;
     }
+    console.log(`${conf.server}/${conf.directory.profil}/${userPP}`)
     return `${conf.server}/${conf.directory.profil}/${userPP}`;
 };
 

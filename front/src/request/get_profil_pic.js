@@ -26,7 +26,6 @@ const getProfilPic = async (mail) => {
     if (user.profil_pic) {
         userPP = user.profil_pic;
     }
-    console.log(`${conf.server}/${conf.directory.profil}/${userPP}`)
     return `${conf.server}/${conf.directory.profil}/${userPP}`;
 };
 

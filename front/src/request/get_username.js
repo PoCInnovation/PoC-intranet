@@ -4,6 +4,7 @@ import gql from  'graphql-tag'
 const GET_USER = gql`
     query GetUser($mail: String!) {
         user(where: {mail: $mail}) {
+            id
             mail
         }
     }

@@ -1,0 +1,35 @@
+import {objectType, stringArg} from "@nexus/schema";
+
+export const Query = objectType({
+	name: 'Query',
+	definition(t) {
+		t.crud.users();
+		t.crud.user();
+		t.crud.projects();
+		t.crud.project();
+		t.crud.roles();
+		t.crud.role();
+
+		t.list.field('GetUsersByRoles', {
+			type: 'Role',
+			args: { searchRole: stringArg() },
+			resolve: (_, { searchRole }, ctx) => {
+				return ctx.prisma.role.findMany({
+					where: { name: searchRole! },
+					include: { users: true }
+				});
+			}
+		});
+
+		t.list.field('GetUsersByProjects', {
+			type: 'Project',
+			args: { searchProject: stringArg() },
+			resolve: (_, { searchProject }, ctx) => {
+				return ctx.prisma.project.findMany({
+					where: { name: searchProject! },
+					include: { users: true }
+				});
+			}
+		});
+	}
+});

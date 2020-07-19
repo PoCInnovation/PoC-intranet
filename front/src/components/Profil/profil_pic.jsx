@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import styled from "styled-components";
 import getProfilPic from "../../request/get_profil_pic";
-import {uploadProfilPic} from "../../request/uploadImage";
 import axios from 'axios';
 import conf from "../../config";
 import getUsername from "../../request/get_username";

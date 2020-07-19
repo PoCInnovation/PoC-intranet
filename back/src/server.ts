@@ -19,12 +19,22 @@ const apolloServer = new ApolloServer({schema, context: createContext });
 /**
  * @description Handle file upload
  *
- * - Enable Cors
+ * - Enable cors
+ * - Config cors middleware
  * - Enable form/data parsing
  */
 app.use(cors({
 	origin: true,
 }));
+
+app.use((req, res, next) => {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header(
+		"Access-Control-Allow-Headers",
+		"Origin, X-Requested-With, Content-Type, Accept"
+	);
+	next();
+});
 
 app.use(bodyParser.json())
 app.use(express.urlencoded({extended: true}));
@@ -44,7 +54,7 @@ app.get('/hello', (req, res) => {
 apolloServer.applyMiddleware({
 	app,
 	path: '/',
-	cors: true
+	cors: true,
 })
 
 server.listen(4000, () => {

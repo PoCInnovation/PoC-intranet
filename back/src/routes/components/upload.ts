@@ -4,7 +4,7 @@ import {prisma} from "../../context";
 import * as fs from "fs";
 
 /**
- * @description Allow upload and fixe field
+ * @description Allow upload and declare field
  */
 const upload = multer().fields([
 		{name: 'file', maxCount: 1},
@@ -15,6 +15,10 @@ const upload = multer().fields([
 const path = __dirname + "/../../../../front/public/profil_pic/";
 const router = Router();
 
+/**
+ * @type Middleware.
+ * @description Verify in the database if the user given exist (prevent from bad request).
+ */
 let verify_user = async (req: Request, res: Response, next: NextFunction) => {
 	const user = await prisma.user.findOne(
 		{
@@ -29,10 +33,18 @@ let verify_user = async (req: Request, res: Response, next: NextFunction) => {
 	}
 }
 
+/**
+ * @param filename
+ * @return : extension of the file (png, jpg).
+ */
 const getExtension = (filename: string) => {
 	return filename.substring(filename.lastIndexOf('.') + 1, filename.length);
 }
 
+/**
+ * @description Delete the previous user image.
+ * @param id : user id
+ */
 const deletePreviousImg = async (id: string) => {
 	const user = await prisma.user.findOne(
 		{
@@ -47,6 +59,13 @@ const deletePreviousImg = async (id: string) => {
 	}
 }
 
+/**
+ * @description Add new image to the user.
+ * Inset path in the database.
+ *
+ * @param id : userId
+ * @param file : image
+ */
 const addNewImage = async (id: string, file: any) => {
 	const extension = getExtension(file.originalname);
 
@@ -61,7 +80,13 @@ const addNewImage = async (id: string, file: any) => {
 	}
 }
 
+/**
+ * Use multer middleware to get file from form/data request
+ *
+ * @returns 400 / 200 depend of the case.
+ */
 router.post('/', upload, verify_user, async (req, res) => {
+	// @ts-ignore
 	const file = req.files['file'][0];
 	const user = req.body.name;
 

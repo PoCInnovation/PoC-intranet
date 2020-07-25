@@ -23,7 +23,7 @@ const StyledMenu = styled.div`
     width: 175px;
     height: 100%;
     min-height: 200px;
-    box-shadow: 5px 0 50px rgba(0, 0, 0, 0.5);
+    box-shadow: 1px 0 25px rgba(0, 0, 0, 0.25);
     
     @media screen and (max-width: 700px), screen and (max-height: 500px) {
         flex-direction: row;
@@ -32,8 +32,7 @@ const StyledMenu = styled.div`
         height: auto;
         min-height: 80px;
         max-height: 120px;
-        max-width: none;
-        box-shadow: 0 5px 50px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 1px 25px rgba(0, 0, 0, 0.25);
     }
 `;
 

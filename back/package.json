@@ -13,8 +13,8 @@
     "postinstall": "npm run generate",
     "dev": "ts-node-dev --no-notify --respawn --transpile-only src/server",
     "db": "npm run db:migrate && npm run db:up",
-    "db:migrate": "prisma migrate save --create-db --experimental",
-    "db:up": "prisma migrate up --create-db --experimental"
+    "db:migrate": "prisma migrate save --experimental",
+    "db:up": "prisma migrate up --experimental"
   },
   "repository": {
     "type": "git",

@@ -10,7 +10,6 @@ const StyledProfilBlock = styled.div`
   overflow: auto;
 //  background-color: #61dafb;
   box-sizing: border-box;
-  position: fixed;
   display: flex;
   flex-direction: column;
   

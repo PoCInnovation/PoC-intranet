@@ -38,7 +38,7 @@ let verify_user = async (req: Request, res: Response, next: NextFunction) => {
  * @return : extension of the file (png, jpg).
  */
 const getExtension = (filename: string) => {
-	return filename.substring(filename.lastIndexOf('.') + 1, filename.length);
+	return filename.substring(filename.lastIndexOf('.'), filename.length);
 }
 
 /**
@@ -93,7 +93,9 @@ router.post('/', upload, verify_user, async (req, res) => {
 	try {
 		await deletePreviousImg(user);
 		await addNewImage(user, file);
+		console.log(`New image added on user ${user}`);
 	} catch (error) {
+		console.log(error);
 		res.status(400).send('Unexpected Error');
 		return;
 	}

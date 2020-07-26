@@ -34,23 +34,25 @@ class ProfilPicture extends Component {
 		data.append('file', file);
 		data.append('name', user.data.user.id);
 
-		// * Send file to server
-		if (file) {
+		try {
+			// Send file
 			await axios.post(`${conf.back}/upload`, data, {
 				headers: {
 					'Content-Type': 'multipart/form-data',
 					'Access-Control-Allow-Origin': '*'
 				}
-			}).then(async (res) => {
-				console.log(res.data, res.status);
-			}).catch(e => console.log(e));
+			});
+
+			// Read image
+			const reader = await new FileReader();
+			reader.onload = (event) => {
+				this.setState({selectedFile: event.target.result});
+			};
+			await reader.readAsDataURL(file);
+		} catch (e) {
+			console.log(e);
 		}
-		// * Reader img and set state
-		const reader = await new FileReader();
-		reader.onload = (event) => {
-			this.setState({selectedFile: event.target.result});
-		};
-		await reader.readAsDataURL(file);
+
 	}
 
 	render() {

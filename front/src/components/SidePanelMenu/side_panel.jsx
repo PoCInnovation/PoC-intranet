@@ -33,6 +33,7 @@ const StyledMenu = styled.div`
         min-height: 80px;
         max-height: 120px;
         box-shadow: 0 1px 25px rgba(0, 0, 0, 0.25);
+        top: 0;
     }
 `;
 

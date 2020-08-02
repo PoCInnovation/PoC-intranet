@@ -1,4 +1,4 @@
-import {objectType, stringArg} from "@nexus/schema";
+import { objectType, stringArg } from '@nexus/schema';
 
 export const Query = objectType({
 	name: 'Query',
@@ -12,22 +12,22 @@ export const Query = objectType({
 
 		t.list.field('GetUsersByRoles', {
 			type: 'Role',
-			args: { searchRole: stringArg() },
-			resolve: (_, { searchRole }, ctx) => {
+			args: {searchRole: stringArg()},
+			resolve: (_, {searchRole}, ctx) => {
 				return ctx.prisma.role.findMany({
-					where: { name: searchRole! },
-					include: { users: true }
+					where: {name: searchRole!},
+					include: {users: true}
 				});
 			}
 		});
 
 		t.list.field('GetUsersByProjects', {
 			type: 'Project',
-			args: { searchProject: stringArg() },
-			resolve: (_, { searchProject }, ctx) => {
+			args: {searchProject: stringArg()},
+			resolve: (_, {searchProject}, ctx) => {
 				return ctx.prisma.project.findMany({
-					where: { name: searchProject! },
-					include: { users: true }
+					where: {name: searchProject!},
+					include: {users: true}
 				});
 			}
 		});

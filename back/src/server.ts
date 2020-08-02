@@ -1,10 +1,10 @@
-import { ApolloServer } from "apollo-server-express";
-import express from 'express'
-import { createServer } from 'http'
-import { schema } from "./schema";
-import { createContext } from "./context";
-import router from './routes/routes'
-import bodyParser from "body-parser";
+import { ApolloServer } from 'apollo-server-express';
+import express from 'express';
+import { createServer } from 'http';
+import { schema } from './schema';
+import { createContext } from './context';
+import router from './routes/routes';
+import bodyParser from 'body-parser';
 import cors from 'cors';
 
 /**
@@ -12,7 +12,7 @@ import cors from 'cors';
  */
 const app = express();
 let server = createServer(app);
-const apolloServer = new ApolloServer({schema, context: createContext });
+const apolloServer = new ApolloServer({schema, context: createContext});
 
 /**
  * @description Handle file upload
@@ -26,15 +26,15 @@ app.use(cors({
 }));
 
 app.use((req, res, next) => {
-	res.header("Access-Control-Allow-Origin", "*");
+	res.header('Access-Control-Allow-Origin', '*');
 	res.header(
-		"Access-Control-Allow-Headers",
-		"Origin, X-Requested-With, Content-Type, Accept"
+		'Access-Control-Allow-Headers',
+		'Origin, X-Requested-With, Content-Type, Accept'
 	);
 	next();
 });
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 app.use(express.urlencoded({extended: true}));
 
 /**
@@ -49,8 +49,8 @@ apolloServer.applyMiddleware({
 	app,
 	path: '/',
 	cors: true,
-})
+});
 
 server.listen(4000, () => {
-	console.log('http://localhost:4000/')
-})
+	console.log('http://localhost:4000/');
+});

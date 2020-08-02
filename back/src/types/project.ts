@@ -1,4 +1,4 @@
-import { objectType } from "@nexus/schema";
+import { objectType } from '@nexus/schema';
 
 export const Project = objectType({
 	name: 'Project',

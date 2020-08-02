@@ -1,4 +1,4 @@
-import { PrismaClient } from 'nexus-plugin-prisma/client'
+import { PrismaClient } from 'nexus-plugin-prisma/client';
 
 /**
  * @description Prisma client
@@ -11,5 +11,5 @@ export interface Context {
 }
 
 export function createContext(): Context {
-	return { prisma }
+	return {prisma};
 }

@@ -23,5 +23,6 @@ npm run dev
 
 1. Launch the front
 ```shell script
+npm i
 npm start
 ```

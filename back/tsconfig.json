@@ -10,5 +10,13 @@
     "baseUrl": "/src",
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true
-  }
+  },
+  "include": [
+    "./generated",
+    "src/**/*.ts",
+    ".eslintrc.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

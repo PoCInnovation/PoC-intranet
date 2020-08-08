@@ -1,6 +1,6 @@
-import { objectType } from "@nexus/schema";
+import { objectType } from '@nexus/schema';
 
-export const Role = objectType({
+export default objectType({
 	name: 'Role',
 	definition(t) {
 		t.model.id();

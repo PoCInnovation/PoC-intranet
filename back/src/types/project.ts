@@ -1,6 +1,6 @@
 import { objectType } from '@nexus/schema';
 
-export const Project = objectType({
+export default objectType({
 	name: 'Project',
 	definition(t) {
 		t.model.id();
@@ -11,5 +11,5 @@ export const Project = objectType({
 		t.model.airtable();
 		t.model.github();
 		t.model.users();
-	}
+	},
 });

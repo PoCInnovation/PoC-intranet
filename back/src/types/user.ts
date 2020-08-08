@@ -1,6 +1,6 @@
 import { objectType } from '@nexus/schema';
 
-export const User = objectType({
+export default objectType({
 	name: 'User',
 	definition(t) {
 		t.model.id();
@@ -11,7 +11,7 @@ export const User = objectType({
 			pagination: false,
 		});
 		t.model.projects({
-			pagination: false
+			pagination: false,
 		});
 	},
 });

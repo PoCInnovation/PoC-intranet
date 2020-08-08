@@ -8,8 +8,6 @@ import { createContext } from './context';
 import router from './routes/routes';
 import { config } from '../config';
 
-import pocAirtable from './integrations/airtable/AirtableSDK';
-
 /**
  * @description Server init
  */

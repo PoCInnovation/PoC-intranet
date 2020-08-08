@@ -13,4 +13,12 @@ module.exports = {
 	rules: {
 		'@typescript-eslint/ban-ts-comment': 0,
 	},
+	overrides: [
+		{
+			files: ['./src/integrations/airtable/AirtableSDK.ts'],
+			rules: {
+				'@typescript-eslint/no-explicit-any': 0,
+			},
+		},
+	],
 };

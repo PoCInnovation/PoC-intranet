@@ -23,7 +23,7 @@ const getProfilPic = async (mail) => {
     })
 
     const user = userInfo.data.user;
-    if (user.profil_pic) {
+    if (user && user.profil_pic) {
         userPP = user.profil_pic;
     }
     return `${conf.server}/${conf.directory.profil}/${userPP}`;

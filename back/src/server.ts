@@ -6,6 +6,7 @@ import { createContext } from './context';
 import router from './routes/routes';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import { config } from '../config';
 
 /**
  * @description Server init
@@ -51,6 +52,6 @@ apolloServer.applyMiddleware({
 	cors: true,
 });
 
-server.listen(4000, () => {
+server.listen(config.port, () => {
 	console.log('http://localhost:4000/');
 });

@@ -1,12 +1,9 @@
 import Airtable from 'airtable';
 import { MemberLogin, ProjectInformation, TaskModel } from './typesAirtable';
-
-// TODO put it into env
-const endpoint = 'https://api.airtable.com';
-const key = 'keyPYPKWuv4u7F7lK';
+import { config } from '../../../config';
 
 // TODO all routes into express server with middleware ect
-export default class AirtableSDK extends Airtable {
+class AirtableSDK extends Airtable {
 	private pocBase: Airtable.Base;
 
   /**
@@ -247,3 +244,5 @@ export default class AirtableSDK extends Airtable {
 		})
 	}
 }
+
+export const pocFranceAirtable: AirtableSDK = new AirtableSDK(config.airtableEndpoint, config.airtableApiKey);

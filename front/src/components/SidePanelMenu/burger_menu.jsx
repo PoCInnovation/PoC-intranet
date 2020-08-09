@@ -11,7 +11,7 @@ const StyledBurgerIcon = styled.div`
     height: 2rem;
     position: fixed;
     top: 35px;
-    left: 15px;
+    left: 5px;
     justify-content: space-around;
     flex-flow: column nowrap;
     z-index: 20;
@@ -30,7 +30,7 @@ const StyledBurgerIcon = styled.div`
       
       &:nth-child(2) {
         transform: ${({open}) => open ? 'translateX(-100vh)' : 'translationX(0)'};
-        opacity: ${({open}) => open ? 0 : 1})
+        opacity: ${({open}) => open ? 0 : 1};
       }
       
       &:nth-child(3) {

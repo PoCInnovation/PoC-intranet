@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 
 const StyledTeamMatesBlock = styled.div`
-  margin-bottom: 40px;
   width: 100%;
   height: auto;
 `
@@ -17,7 +16,7 @@ const StyledTeamMatesContainer = styled.div`
 `
 
 const StyledTitle = styled.h1`
-    margin-bottom: 25px;
+    margin-bottom: 10px;
     font-size: 30px;
     font-weight: 600;
 `
@@ -32,7 +31,6 @@ class TeamMatesBlock extends Component {
             <StyledTeamMatesBlock>
                 <StyledTitle>Team mates</StyledTitle>
                 <StyledTeamMatesContainer>
-
                 </StyledTeamMatesContainer>
             </StyledTeamMatesBlock>
         );

@@ -10,6 +10,9 @@ const StyledProfilPicture = styled.img`
     width: 180px;
     height: 180px;
     border: solid 3px black;
+	@media screen and (max-width: 700px), screen and (max-height: 500px) {
+    	display: none;
+  }
 `;
 
 class ProfilPicture extends Component {

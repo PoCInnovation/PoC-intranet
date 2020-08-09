@@ -3,26 +3,25 @@ import styled from "styled-components";
 import getProjectInfo from "../../request/get_project_infos";
 
 const StyledProjectCard = styled.div`
-  display: inline-block;
-  * {
-    margin: 0;
-    padding: 0;
-  }
-
+  display: flex;
   color: #373737;  
-  padding: 15px;
   overflow: hidden;
-  min-width: 240px;
-  width: 100%;
   height: 180px;
+  min-width: 32%;
+  width: ${props => props.nbr}%;                  /*calc( (100 / ${props => props.nbr}) - (1 * ${props => props.nbr}))"%";*/
   border: 1.5px #b4b4b4 solid;
   border-radius: 10px;
   margin-bottom: 15px;
+
+  @media screen and (max-width: 700px), screen and (max-height: 500px) {
+    flex-direction: column;
+     width: 100%;
+  }
     
   h1 {
     font-size: 30px;
     font-weight: 600;
-    margin-bottom: 65px; // To replace later with img
+    margin-left: 10px;
   }
   
   p {
@@ -32,15 +31,10 @@ const StyledProjectCard = styled.div`
 `;
 
 const StyledProjectBlock = styled.div`
-  width: 100%;
-  height: auto;
-//  background-color: antiquewhite;
-  
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
   justify-content: space-between;
-  
+  width: 100%;  
+  flex-wrap: wrap;
 `;
 
 class ProjectBlock extends Component {
@@ -57,10 +51,10 @@ class ProjectBlock extends Component {
         if (this.state.data.projects) {
             return this.state.data.projects.map((project, i) => {
                 return (
-                    <StyledProjectCard key={i}>
-                        <h1>{project.name}</h1>
-                        <p>{project.description}</p>
-                    </StyledProjectCard>
+                        <StyledProjectCard key={i} nbr={100 / this.state.data.projects.length - (1 * this.state.data.projects.length)}>
+                            <h1>{project.name}</h1>
+                            <p>{project.description}</p>
+                        </StyledProjectCard>
                 );
             });
         } else {

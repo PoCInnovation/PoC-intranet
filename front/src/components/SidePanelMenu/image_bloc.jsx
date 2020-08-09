@@ -6,12 +6,13 @@ import ProfilPic from "./profil_pic";
 const StyledImageBloc = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center; 
-    
+    align-items: center;
+
     @media screen and (max-width: 700px), screen and (max-height: 500px) {
         flex-direction: row;
         order: 2;
         justify-content: space-between;
+        display: none;
     }
 `;
 

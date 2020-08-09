@@ -1,23 +1,21 @@
 import Airtable from 'airtable';
 import { MemberLogin, ProjectInformation, TaskModel } from './typesAirtable';
-
-// TODO put it into env
-const endpoint = 'https://api.airtable.com';
-const key = 'keyPYPKWuv4u7F7lK';
+import { config } from '../../../config';
 
 // TODO all routes into express server with middleware ect
-export default class AirtableSDK extends Airtable {
+class AirtableSDK extends Airtable {
 	private pocBase: Airtable.Base;
 
-  /**
-   * Construct a new SDK class from Airtable
-   *
-   * @param endpointUrl Airtable API endpoint
-   * @param apiKey API Private key
-   */
-	constructor(endpointUrl: string, apiKey: string) {
-		super({endpointUrl, apiKey});
-		this.pocBase = this.base('appIXavTSmO9mLC18')
+	/**
+	 * Construct a new SDK class from Airtable
+	 *
+	 * @param endpointUrl Airtable API endpoint
+	 * @param apiKey API Private key
+	 * @param megaListKey Key of the megaList
+	 */
+	constructor(endpointUrl: string, apiKey: string, megaListKey: string) {
+		super({ endpointUrl, apiKey });
+		this.pocBase = this.base(megaListKey);
 	}
 
 	/**
@@ -25,13 +23,13 @@ export default class AirtableSDK extends Airtable {
 	 *
 	 * @param project
 	 */
-	typeProject(project: any) {
+	static typeProject(project: any) {
 		return {
 			nom: project.Nom,
 			description: project.Description,
 			members: project['Members login'],
-			respo: project['Responsable login']
-		}
+			respo: project['Responsable login'],
+		};
 	}
 
 	/**
@@ -40,7 +38,7 @@ export default class AirtableSDK extends Airtable {
 	 * @todo Handle assigned Id
 	 * @param task TaskModel type
 	 */
-	async convertTaskToRecord(task: TaskModel) {
+	static async convertTaskToRecord(task: TaskModel) {
 		const { taskName, status, assigned, weight, description, stepDone, priority } = task;
 
 		/*
@@ -49,18 +47,17 @@ export default class AirtableSDK extends Airtable {
 		}))
 		*/
 		const record = {
-			"fields": {
-				"Task name": taskName,
-				"Status": status,
-			//	"Assigned to": assignedId,
-				"Weight": weight,
-				"Description": description,
-				"Weight if s8": "IF(AND(OR({Status} = \"DONE\", {Status} = \"DOING\"), {Sprint} = \"Sprint 8\"), {Weight}, 0)",
-				"Priority": priority,
-				"Step Done": stepDone
-			}
-		}
-		console.log(record);
+			fields: {
+				'Task name': taskName,
+				Status: status,
+				//	"Assigned to": assignedId,
+				Weight: weight,
+				Description: description,
+				'Weight if s8': 'IF(AND(OR({Status} = "DONE", {Status} = "DOING"), {Sprint} = "Sprint 8"), {Weight}, 0)',
+				Priority: priority,
+				'Step Done': stepDone,
+			},
+		};
 		return record;
 	}
 
@@ -68,11 +65,14 @@ export default class AirtableSDK extends Airtable {
 	 * Return an array of every projects
 	 */
 	async getProjectList() {
-		return (await this.pocBase('Projets')
-		.select({
-			view: "Grid view",
-			fields: ['Members login', 'Responsable login', 'Nom', 'Description', 'Api key']
-		}).all()).map(value => value.fields);
+		return (
+			await this.pocBase('Projets')
+				.select({
+					view: 'Grid view',
+					fields: ['Members login', 'Responsable login', 'Nom', 'Description', 'Api key'],
+				})
+				.all()
+		).map((value) => value.fields);
 	}
 
 	/**
@@ -82,9 +82,10 @@ export default class AirtableSDK extends Airtable {
 	 */
 	async getProjectKey(projectName: string): Promise<any> {
 		return (await this.getProjectList()).filter((project: any) => {
-			if (project['Nom'] === projectName) {
+			if (project.Nom === projectName) {
 				return project;
 			}
+			return false;
 		})[0];
 	}
 
@@ -96,7 +97,7 @@ export default class AirtableSDK extends Airtable {
 	async getProject(projectName: string) {
 		const projectKey: string = (await this.getProjectKey(projectName))['Api key'];
 
-		return await this.getProjectTasks(projectKey);
+		return this.getProjectTasks(projectKey);
 	}
 
 	/**
@@ -107,16 +108,18 @@ export default class AirtableSDK extends Airtable {
 	async getProjectTasks(projectKey: string) {
 		const projectBase = this.base(projectKey);
 
-		return (await projectBase('Tasks')
-		.select({
-			view: "All Tasks"
-		}).all())
-		.map((task) => {
+		return (
+			await projectBase('Tasks')
+				.select({
+					view: 'All Tasks',
+				})
+				.all()
+		).map((task) => {
 			return {
 				id: task.id,
-				data: task.fields
+				data: task.fields,
 			};
-		})
+		});
 	}
 
 	/**
@@ -131,7 +134,8 @@ export default class AirtableSDK extends Airtable {
 			if (task.data['Task name'] === taskName) {
 				return task;
 			}
-		})[0]
+			return false;
+		})[0];
 		return selectTask.id;
 	}
 
@@ -142,23 +146,27 @@ export default class AirtableSDK extends Airtable {
 	 * @param login User email
 	 */
 	async getMemberLogin(login: string): Promise<MemberLogin> {
-		const members = (await this.pocBase('Membres')
-		.select({
-			view: "Grid view",
-			fields: ['Login']
-		}).all()).map((value: any) => value);
+		const members = (
+			await this.pocBase('Membres')
+				.select({
+					view: 'Grid view',
+					fields: ['Login'],
+				})
+				.all()
+		).map((value: any) => value);
 
-	 const member = members.filter((value: any) => {
-	 	if (value.fields.Login && value.fields.Login.email === login) {
-	 		return value;
-		}
-	 })[0];
+		const member = members.filter((value: any) => {
+			if (value.fields.Login && value.fields.Login.email === login) {
+				return value;
+			}
+			return false;
+		})[0];
 
-	 return {
+		return {
 			id: member.id,
 			email: member.fields.Login.email,
 			name: member.fields.Login.name,
-		}
+		};
 	}
 
 	/**
@@ -172,19 +180,21 @@ export default class AirtableSDK extends Airtable {
 		// Filter projects to get only selected login project
 		const memberProjects = projects.filter((value: any) => {
 			if (value['Members login']) {
-				const isMemberOfProject = value['Members login'].filter((value: any) => {
-					if (value.email === login) {
-						return value;
+				const isMemberOfProject = value['Members login'].filter((memberLogin: any) => {
+					if (memberLogin.email === login) {
+						return memberLogin;
 					}
+					return false;
 				});
 				if (isMemberOfProject.length) {
 					return value;
 				}
 			}
+			return false;
 		});
 
 		// Convert array to ty
-		return memberProjects.map((value: any) => this.typeProject(value));
+		return memberProjects.map((value: any) => AirtableSDK.typeProject(value));
 	}
 
 	/**
@@ -197,10 +207,8 @@ export default class AirtableSDK extends Airtable {
 		const projectKey: string = (await this.getProjectKey(projectName))['Api key'];
 		const projectBase = this.base(projectKey);
 
-		await projectBase('Tasks').create([
-			await this.convertTaskToRecord(newTask)
-		], undefined)
-	};
+		await projectBase('Tasks').create([await AirtableSDK.convertTaskToRecord(newTask)], undefined);
+	}
 
 	/**
 	 * Update task project
@@ -216,10 +224,10 @@ export default class AirtableSDK extends Airtable {
 
 		await projectBase('Tasks').update([
 			{
-				"id": taskId,
-				...await this.convertTaskToRecord(newTask),
-			}
-		])
+				id: taskId,
+				...(await AirtableSDK.convertTaskToRecord(newTask)),
+			},
+		]);
 	}
 
 	/**
@@ -232,18 +240,21 @@ export default class AirtableSDK extends Airtable {
 		const projectKey: string = (await this.getProjectKey(projectName))['Api key'];
 
 		const projectTask = (await this.getProject(projectName)).filter((task: any) => {
-			if (task.data['Task name'] == taskName) {
+			if (task.data['Task name'] === taskName) {
 				return task.id;
 			}
-		})[0]
+			return false;
+		})[0];
 
 		const projectBase = this.base(projectKey);
-		return await projectBase('Tasks').destroy(projectTask.id, (err: Error, deleteTask: any) => {
+		return projectBase('Tasks').destroy(projectTask.id, (err: Error, deleteTask: any) => {
 			if (err) {
 				throw err;
 			} else {
 				return deleteTask;
 			}
-		})
+		});
 	}
 }
+
+export default new AirtableSDK(config.airtableEndpoint, config.airtableApiKey, config.megalistKey);

@@ -1,5 +1,13 @@
+# Nodes modules
 node_modules/
 yarn.lock
+
+# Build file
 dist/
 save/
+
+# Jetbrains folder
 .idea/
+
+# Nexus generation
+./src/generated/

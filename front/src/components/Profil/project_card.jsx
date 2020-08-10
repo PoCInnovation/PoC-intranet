@@ -6,6 +6,7 @@ const StyledProjectCard = styled.div`
   display: flex;
   color: #373737;  
   overflow: hidden;
+  flex-direction: column;
   height: 180px;
   min-width: 32%;
   width: ${props => props.nbr}%;                  /*calc( (100 / ${props => props.nbr}) - (1 * ${props => props.nbr}))"%";*/
@@ -17,16 +18,11 @@ const StyledProjectCard = styled.div`
     flex-direction: column;
      width: 100%;
   }
-    
-  h1 {
-    font-size: 30px;
-    font-weight: 600;
-    margin-left: 10px;
-  }
-  
   p {
     font-weight: 600;
     font-size: 12px;
+    margin-left: 10px;
+    margin-top: 10px;
   }
 `;
 
@@ -35,6 +31,14 @@ const StyledProjectBlock = styled.div`
   justify-content: space-between;
   width: 100%;  
   flex-wrap: wrap;
+`;
+
+const ProjectName = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    font-weight: bold;
 `;
 
 class ProjectBlock extends Component {
@@ -52,7 +56,7 @@ class ProjectBlock extends Component {
             return this.state.data.projects.map((project, i) => {
                 return (
                         <StyledProjectCard key={i} nbr={100 / this.state.data.projects.length - (1 * this.state.data.projects.length)}>
-                            <h1>{project.name}</h1>
+                            <ProjectName>{project.name}</ProjectName>
                             <p>{project.description}</p>
                         </StyledProjectCard>
                 );

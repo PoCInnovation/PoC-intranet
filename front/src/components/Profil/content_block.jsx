@@ -8,6 +8,9 @@ const StyledContentBlock = styled.div`
     flex-direction: column;
     height: 100%;
     width: 80%;
+    @media screen and (max-width: 700px), screen and (max-height: 500px) {
+        margin-top: -50px;
+    }
 
    
 //   background-color: #f8ac72;

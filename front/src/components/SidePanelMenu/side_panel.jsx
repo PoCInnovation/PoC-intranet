@@ -2,9 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import ImageBloc from "./image_bloc";
 import BurgerMenu from "./burger_menu";
-/*
-  Todo Faire le menu burger
-*/
 
 const StyledMenu = styled.div`
     @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap%27');
@@ -20,9 +17,11 @@ const StyledMenu = styled.div`
     width: 20%;
     box-shadow: 1px 0 25px rgba(0, 0, 0, 0.25);
      @media screen and (max-width: 700px), screen and (max-height: 500px) {
-        flex-direction: column;
-        justify-content: center;
-        width: 0px;
+         flex-direction: column;
+         position: fixed;
+         width: 100%;
+         top: 0;
+         left: 0;
     }
 `;
 

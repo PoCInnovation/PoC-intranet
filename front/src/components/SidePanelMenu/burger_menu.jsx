@@ -11,7 +11,7 @@ const StyledBurgerIcon = styled.div`
     height: 2rem;
     position: fixed;
     top: 35px;
-    left: 5px;
+    left: 15px;
     justify-content: space-around;
     flex-flow: column nowrap;
     z-index: 20;

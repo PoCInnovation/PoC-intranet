@@ -15,6 +15,7 @@ const StyledProfilBlock = styled.div`
   margin-top: 10px;
   @media screen and (max-width: 700px), screen and (max-height: 500px) {
     width: 100%;
+    margin-top: 100px;
   }
 `;
 

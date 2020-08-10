@@ -22,10 +22,6 @@ const StyledTitle = styled.h1`
 `
 
 class TeamMatesBlock extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <StyledTeamMatesBlock>

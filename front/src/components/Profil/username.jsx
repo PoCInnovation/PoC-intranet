@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import getUsername from "../../request/get_username";
+/*import getUsername from "../../request/get_username";
 import getCookie from "../../get_cookie";
-import getUserInfoFromMSGraph from "../../request/call_ms_api";
+import getUserInfoFromMSGraph from "../../request/call_ms_api";*/
 import {withRouter} from "react-router-dom";
 
 const StyledUserName = styled.p`

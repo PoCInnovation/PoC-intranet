@@ -10,7 +10,8 @@ const StyledProfilBlock = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width : 80%;
+  width : 100%;
+  margin-left: 20%;
   box-sizing: border-box;
   margin-top: 10px;
   @media screen and (max-width: 700px), screen and (max-height: 500px) {
@@ -20,10 +21,6 @@ const StyledProfilBlock = styled.div`
 `;
 
 class ProfilBlock extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     async componentDidMount() {
         const token = getCookie('token');
 

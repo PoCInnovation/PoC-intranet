@@ -12,24 +12,22 @@ const StyledContainer = styled.div`
     }
 `;
 
-const Logo = styled.img`
-    display: none;
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    margin-top: 0px;
-    left: 75%;
-    @media screen and (max-width: 700px), screen and (max-height: 500px) {
-        display: flex;
-    }
+const SideContainer = styled.div`
+    display: flex;
+    position: fixed;
+    width: 80%;
+    height: 100%;
+    left: 0px;
 `;
 
 const HomeContainer = () => {
     return (
-        <StyledContainer>
+      <StyledContainer>
+          <SideContainer>
             <SidePanel/>
-            <ProfilBlock/>
-        </StyledContainer>
+          </SideContainer>
+          <ProfilBlock/>
+      </StyledContainer>
     );
 }
 

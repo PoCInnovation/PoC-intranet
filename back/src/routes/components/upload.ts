@@ -1,6 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import multer from 'multer';
 import * as fs from 'fs';
+import httpStatus from 'http-status-codes';
 import { prisma } from '../../context';
 
 /**
@@ -91,10 +92,10 @@ router.post('/', upload, verifyUser, async (req, res) => {
 		await deletePreviousImg(user);
 		await addNewImage(user, file);
 		console.log(`New image added on user ${user}`);
-		res.status(200).header({ 'Access-Control-Origin-Allow': '*' });
+		res.status(httpStatus.CREATED).header({ 'Access-Control-Origin-Allow': '*' });
 	} catch (error) {
 		console.log(error);
-		res.status(400).send('Unexpected Error');
+		res.status(httpStatus.BAD_REQUEST).send('Unexpected Error');
 	}
 });
 

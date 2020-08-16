@@ -7,24 +7,20 @@ import getUserInfoFromMSGraph from "../../request/call_ms_api";
 import {withRouter} from "react-router-dom";
 
 const StyledProfilBlock = styled.div`
-  overflow: auto;
-//  background-color: #61dafb;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  
-  margin-left: 175px;
-  padding: 30px;
-  
-  width: 100%;
-  height: 100%;
+  align-items: center;
+  width : 100%;
+  margin-left: 20%;
+  box-sizing: border-box;
+  margin-top: 10px;
+  @media screen and (max-width: 700px), screen and (max-height: 500px) {
+    width: 100%;
+    margin-top: 100px;
+  }
 `;
 
 class ProfilBlock extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     async componentDidMount() {
         const token = getCookie('token');
 

@@ -10,4 +10,4 @@ save/
 .idea/
 
 # Nexus generation
-./src/generated/
+./generated/

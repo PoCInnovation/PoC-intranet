@@ -10,8 +10,6 @@ const StyledPP = styled.img`
     @media screen and (max-width: 700px), screen and (max-height: 500px) {
         position: absolute;
         right: 15px;
-        margin: 0;
-        order: 3;
     }
 `;
 

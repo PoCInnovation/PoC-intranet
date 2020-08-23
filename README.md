@@ -6,7 +6,7 @@ There is 2 different part `back` and `front`
 ## Back
 Work with an environment so don't forget to `source .envrc` or `direnv allow`
 
-### Getting started
+### Getting started
 
 **Launch the database**
 
@@ -33,7 +33,7 @@ Todo
 
 ## Front
 
-### Getting started
+### Getting started
 
 1. Launch the front
 ```shell script

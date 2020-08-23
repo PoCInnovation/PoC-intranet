@@ -52,7 +52,7 @@ class ProjectBlock extends Component {
     }
 
     renderProject() {
-        if (this.state.data.projects) {
+        if (this.state.data && this.state.data.projects) {
             return this.state.data.projects.map((project, i) => {
                 return (
                         <StyledProjectCard key={i} nbr={100 / this.state.data.projects.length - (1 * this.state.data.projects.length)}>

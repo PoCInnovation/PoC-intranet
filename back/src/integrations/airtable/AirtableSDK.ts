@@ -42,11 +42,12 @@ class AirtableSDK extends Airtable {
 		const { taskName, status, assigned, weight, description, stepDone, priority } = task;
 
 		/*
+		// todo handle assigned task
 		const assignedId = await Promise.all(assigned.map(async (login: string) => {
 			return (await this.getMemberLogin(login)).id;
 		}))
 		*/
-		const record = {
+		return {
 			fields: {
 				'Task name': taskName,
 				Status: status,
@@ -58,7 +59,6 @@ class AirtableSDK extends Airtable {
 				'Step Done': stepDone,
 			},
 		};
-		return record;
 	}
 
 	/**

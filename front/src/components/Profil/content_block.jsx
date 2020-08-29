@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import ProjectBlock from "./project_card";
 import TeamMatesBlock from "./team_mates";
 import styled from "styled-components";
+import getProjectInfo from "../../request/get_project_infos";
 
 const StyledContentBlock = styled.div`
     display: flex;
@@ -23,13 +24,24 @@ const StyledTitle = styled.h1`
 `;
 
 const ContentBlock = () => {
-    return (
-        <StyledContentBlock>
-            <StyledTitle> Projets </StyledTitle>
-            <ProjectBlock/>
-            <TeamMatesBlock/>
-        </StyledContentBlock>
-    )
+  const [projects, setProjects] = useState(null);
+
+  useEffect(() => {
+    const getProjects = async () => {
+      const projects = await getProjectInfo(sessionStorage.getItem('mail'))
+      setProjects(projects);
+    };
+    getProjects();
+  }, [])
+
+  return (
+    <StyledContentBlock>
+      <StyledTitle> Projets </StyledTitle>
+      <ProjectBlock projects={projects}/>
+      <StyledTitle>Team mates</StyledTitle>
+      <TeamMatesBlock/>
+    </StyledContentBlock>
+  )
 };
 
 export default ContentBlock

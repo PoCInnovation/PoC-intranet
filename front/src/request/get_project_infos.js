@@ -2,11 +2,11 @@ import backRequester from "../backRequester";
 import getUsername from "./get_username";
 
 const getProjectInfo = async (mail) => {
-    const userId = (await getUsername(mail)).data.user.id
+    const user = (await getUsername(mail)).data.user
 
-    if (!userId) return null;
+    if (!user) return null;
 
-    return (await backRequester.get(`users/${userId}/projects`)).data;
+    return (await backRequester.get(`users/${user.id}/projects`)).data;
 }
 
 export default getProjectInfo;

@@ -38,8 +38,8 @@ const ContentBlock = () => {
     <StyledContentBlock>
       <StyledTitle> Projets </StyledTitle>
       <ProjectBlock projects={projects}/>
-      <StyledTitle>Team mates</StyledTitle>
-      <TeamMatesBlock/>
+      <StyledTitle>Teammates</StyledTitle>
+      <TeamMatesBlock projects={projects}/>
     </StyledContentBlock>
   )
 };

@@ -15,9 +15,9 @@ const StyledContainer = styled.div`
 const SideContainer = styled.div`
     display: flex;
     position: fixed;
-    width: 80%;
+    width: 200px;
     height: 100%;
-    left: 0px;
+    left: 0;
 `;
 
 const HomeContainer = () => {

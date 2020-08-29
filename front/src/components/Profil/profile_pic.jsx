@@ -1,11 +1,12 @@
 import React, {Component} from "react";
 import styled from "styled-components";
-import getProfilPic from "../../request/get_profil_pic";
-import axios from 'axios';
-import conf from "../../config";
+
+import backRequester from "../../backRequester";
+
+import getProfilePic from "../../request/get_profil_pic";
 import getUsername from "../../request/get_username";
 
-const StyledProfilPicture = styled.img`
+const StyledProfilePicture = styled.img`
     border-radius: 50%;
     width: 180px;
     height: 180px;
@@ -15,7 +16,7 @@ const StyledProfilPicture = styled.img`
   }
 `;
 
-class ProfilPicture extends Component {
+class ProfilePicture extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {selectedFile: null};
@@ -25,7 +26,7 @@ class ProfilPicture extends Component {
 
 	async componentDidMount() {
 		this.setState({
-			selectedFile: await getProfilPic(sessionStorage.getItem('mail'))
+			selectedFile: await getProfilePic(sessionStorage.getItem('mail'))
 		});
 	}
 
@@ -39,7 +40,7 @@ class ProfilPicture extends Component {
 
 		try {
 			// Send file
-			await axios.post(`${conf.back}/upload`, data, {
+			await backRequester.post('/upload', data, {
 				headers: {
 					'Content-Type': 'multipart/form-data',
 					'Access-Control-Allow-Origin': '*'
@@ -67,7 +68,7 @@ class ProfilPicture extends Component {
 							 ref={this.imageUploader}
 							 style={{display: "none"}}
 							 onChange={this.changeHandler}/>
-				<StyledProfilPicture
+				<StyledProfilePicture
 					src={this.state.selectedFile}
 					alt="profil picture"
 					onClick={() => this.imageUploader.current.click()}
@@ -77,4 +78,4 @@ class ProfilPicture extends Component {
 	}
 }
 
-export default ProfilPicture;
+export default ProfilePicture;

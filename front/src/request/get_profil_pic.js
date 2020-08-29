@@ -26,7 +26,7 @@ const getProfilPic = async (mail) => {
     if (user && user.profil_pic) {
         userPP = user.profil_pic;
     }
-    return `${conf.server}/${conf.directory.profil}/${userPP}`;
+    return `${conf.server}/${conf.directory.profile}/${userPP}`;
 };
 
 export default getProfilPic;

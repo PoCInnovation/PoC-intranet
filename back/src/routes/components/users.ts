@@ -4,23 +4,26 @@ import AirtableSDK from '../../integrations/airtable/AirtableSDK';
 import { prisma } from '../../context';
 import { verifyId } from '../middlewares/users';
 
-const users = Router();
+const router = Router();
 
-users.get('/:id/projects', verifyId, async (req, res) => {
+router.get('/:id/projects', verifyId, async (req, res) => {
+	const { id } = req.params;
+
 	try {
 		const user = await prisma.user.findOne({
-			where: { id: req.params.id },
+			where: { id },
 		});
 
 		if (!user) {
-			throw new Error('User does not exist');
+			res.status(httpStatus.NOT_FOUND).send(`User ${id} does not exist`);
+			return;
 		}
 
-		const userProjets = await AirtableSDK.getMemberProjects(user.mail);
-		res.status(httpStatus.OK).send(userProjets);
+		const userProjects = await AirtableSDK.getMemberProjects(user.mail);
+		res.status(httpStatus.OK).send(userProjects);
 	} catch (e) {
-		res.status(httpStatus.UNAUTHORIZED).send(e.message);
+		res.status(httpStatus.INTERNAL_SERVER_ERROR).send(e.message);
 	}
 });
 
-export default users;
+export default router;

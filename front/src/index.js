@@ -5,6 +5,7 @@ import * as serviceWorker from './serviceWorker';
 import AuthBlock from "./components/Auth/auth_block";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import HomeContainer from './components/pages/home';
+import ProjectPage from './components/pages/projet';
 
 ReactDOM.render(
     <React.StrictMode>
@@ -12,8 +13,11 @@ ReactDOM.render(
             <Route exact path={"/"}>
                 <AuthBlock/>
             </Route>
-            <Route path={"/profil"}>
+            <Route exact path={"/profil"}>
                 <HomeContainer />
+            </Route>
+            <Route path="/profil/projet">
+                <ProjectPage />
             </Route>
         </Router>
     </React.StrictMode>,

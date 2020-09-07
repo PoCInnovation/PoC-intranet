@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link, useHistory } from 'react-router-dom';
 
 const StyledNav = styled.div`
     display: flex;
@@ -32,15 +33,29 @@ const StyledNav = styled.div`
     }  
 `;
 
+const LinkDiv = styled(Link)`
+    text-decoration: none;
+    margin-top : 20px;
+    color: black;
+
+    :hover {
+      color: lightblue;
+    }
+`;
+
 const Nav = ({open}) => {
+  const history= useHistory();
     return (
         <StyledNav open={open}>
-            <p>Projet</p>
-            <p>Planning</p>
-            <p>News</p>
-            <p>Paramètres</p>
+            <LinkDiv onClick={() => history.push('/profil/projet')}>Projet</LinkDiv>
+            <LinkDiv to="/profil/projet">Planning</LinkDiv>
+            <LinkDiv to="/profil/projet">News</LinkDiv>
+            <LinkDiv to="/profil/projet">Paramètres</LinkDiv>
         </StyledNav>
     );
 };
+
+
+/* Don't forget to change link to when pages implemented */
 
 export default Nav;

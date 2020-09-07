@@ -14,7 +14,7 @@ const StyledMenu = styled.div`
     flex-direction: column;
     grid-row-gap: 22.5%;
     align-items: center;
-    width: 20%;
+    width: 100%;
     box-shadow: 1px 0 25px rgba(0, 0, 0, 0.25);
      @media screen and (max-width: 700px), screen and (max-height: 500px) {
          flex-direction: column;

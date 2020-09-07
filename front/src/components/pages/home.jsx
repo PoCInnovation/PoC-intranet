@@ -15,7 +15,10 @@ const StyledContainer = styled.div`
 const SideContainer = styled.div`
     display: flex;
     position: fixed;
-    width: 80%;
+    width: 20%;
+    @media screen and (max-width: 700px), screen and (max-height: 500px) {
+        width: 0px; 
+    }
     height: 100%;
     left: 0px;
 `;

@@ -19,9 +19,7 @@ const SideContainer = styled.div`
     @media screen and (max-width: 700px), screen and (max-height: 500px) {
         width: 0px; 
     }
-    height: 100%;
-    left: 0px;
-`;
+`
 
 const HomeContainer = () => {
     return (

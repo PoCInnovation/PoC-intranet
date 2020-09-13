@@ -21,6 +21,7 @@ const getRolesProperty = async (mail) => {
             mail
         }
     })
+
     return userRoles.data.user;
 };
 

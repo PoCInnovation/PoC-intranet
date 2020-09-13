@@ -1,5 +1,15 @@
+# JS Modules
 node_modules/
-yarn.lock
+
+# Built typescript
 dist/
-save/
+
+# Webstorm folder
 .idea/
+
+# Nexus generation
+back/generated/
+
+# API logger
+back/logs/
+

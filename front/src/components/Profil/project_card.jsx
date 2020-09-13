@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import styled from "styled-components";
-import getProjectInfo from "../../request/get_project_infos";
 
 const StyledProjectCard = styled.div`
   display: flex;
@@ -16,13 +15,7 @@ const StyledProjectCard = styled.div`
 
   @media screen and (max-width: 700px), screen and (max-height: 500px) {
     flex-direction: column;
-     width: 100%;
-  }
-  p {
-    font-weight: 600;
-    font-size: 12px;
-    margin-left: 10px;
-    margin-top: 10px;
+    width: 100%;
   }
 `;
 
@@ -39,43 +32,40 @@ const ProjectName = styled.div`
     align-items: center;
     font-size: 25px;
     font-weight: bold;
+    
+    margin-top: 5px;
+    margin-bottom: 100px;
 `;
 
+const ProjectDescription = styled.p`
+  font-weight: 600;
+  font-size: 12px;
+  
+  text-align: justify;
+  padding: 5px;
+`
+
 class ProjectBlock extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {data: {}, isMounted: false};
-    }
-
-    async componentDidMount() {
-        this.setState({data: await getProjectInfo(sessionStorage.getItem('mail')), isMounted: true});
-    }
-
     renderProject() {
-        if (this.state.data.projects) {
-            return this.state.data.projects.map((project, i) => {
-                return (
-                        <StyledProjectCard key={i} nbr={100 / this.state.data.projects.length - (1 * this.state.data.projects.length)}>
-                            <ProjectName>{project.name}</ProjectName>
-                            <p>{project.description}</p>
-                        </StyledProjectCard>
-                );
-            });
-        } else {
-            return (<div/>)
-        }
+        const projects = this.props.projects;
+
+        if (!projects) return (<div/>)
+
+        return projects.map((project, i) => {
+            return(
+              <StyledProjectCard key={i} nbr={100 / project.length - (1 * project.length)}>
+                  <ProjectName>{project.nom}</ProjectName>
+                  <ProjectDescription>{project.description}</ProjectDescription>
+              </StyledProjectCard>
+            )
+        })
     }
 
     render() {
-        if (this.state.isMounted) {
-            return (
-                <StyledProjectBlock>
-                    {this.renderProject()}
-                </StyledProjectBlock>
-            );
-        }
         return (
-            <div/>
+          <StyledProjectBlock>
+              {this.renderProject()}
+          </StyledProjectBlock>
         );
     }
 }

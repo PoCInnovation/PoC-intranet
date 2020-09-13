@@ -19,7 +19,6 @@ const StyledMenu = styled.div`
      @media screen and (max-width: 700px), screen and (max-height: 500px) {
          flex-direction: column;
          position: fixed;
-         width: 100%;
          top: 0;
          left: 0;
     }

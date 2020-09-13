@@ -1,7 +1,9 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import multer from 'multer';
 import * as fs from 'fs';
+import httpStatus from 'http-status-codes';
 import { prisma } from '../../context';
+import logger from '../../serverLogger';
 
 /**
  * @description Allow upload and declare field
@@ -90,11 +92,11 @@ router.post('/', upload, verifyUser, async (req, res) => {
 	try {
 		await deletePreviousImg(user);
 		await addNewImage(user, file);
-		console.log(`New image added on user ${user}`);
-		res.status(200).header({ 'Access-Control-Origin-Allow': '*' });
+		logger.info(`New image added on user ${user}`);
+		res.status(httpStatus.CREATED).header({ 'Access-Control-Origin-Allow': '*' });
 	} catch (error) {
-		console.log(error);
-		res.status(400).send('Unexpected Error');
+		logger.error(error);
+		res.status(httpStatus.BAD_REQUEST).send('Unexpected Error');
 	}
 });
 

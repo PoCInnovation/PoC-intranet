@@ -1,4 +1,3 @@
-
 export interface MemberLogin {
 	id: string;
 	email: string;

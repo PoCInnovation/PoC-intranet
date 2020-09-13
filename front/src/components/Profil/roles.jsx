@@ -48,6 +48,7 @@ class RolesBlock extends React.Component {
 
     renderRoles() {
         /*if (this.state.data.roles) {
+        if (this.state.data && this.state.data.roles) {
             return this.state.data.roles.map((role, i) => {
                 return (
                     <StyledRole color={role.color} key={i}>{role.name}</StyledRole>

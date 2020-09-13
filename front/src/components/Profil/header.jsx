@@ -1,16 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import ProfilPicture from "./profil_pic";
+import ProfilePicture from "./profile_pic";
 import UserBlock from "./user_block";
 
-const StyledProfilHead = styled.div`
+const StyledProfileHead = styled.div`
     display: flex;  
  //   background-color: #e70101;
     width: 80%;
     height: 230px;
     box-sizing: border-box;
     
-    display: flex;
     grid-template-columns: 200px auto;
     align-items: center;
     
@@ -21,13 +20,13 @@ const StyledProfilHead = styled.div`
     }
 `;
 
-const ProfilHead = () => {
+const ProfileHead = () => {
     return (
-        <StyledProfilHead>
-            <ProfilPicture/>
+        <StyledProfileHead>
+            <ProfilePicture/>
             <UserBlock/>
-        </StyledProfilHead>
+        </StyledProfileHead>
     );
 };
 
-export default ProfilHead;
+export default ProfileHead;

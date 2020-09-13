@@ -26,7 +26,7 @@ export default makeSchema({
 		typegen: path.join(`${__dirname}/../generated/nexus.ts`),
 	},
 	typegenAutoConfig: {
-		contextType: 'Context.context',
+		contextType: 'Context.Context',
 		sources: [
 			{
 				source: './node_modules/nexus-plugin-prisma/client',

@@ -13,7 +13,7 @@ const GET_PROFIL_PIC = gql`
 `
 
 const getProfilPic = async (mail) => {
-    let userPP = 'default_profil_pic.png';
+    let userPP = 'default_profil_pic.jpg';
 
     const userInfo = await client.query({
         query: GET_PROFIL_PIC,
@@ -26,7 +26,7 @@ const getProfilPic = async (mail) => {
     if (user && user.profil_pic) {
         userPP = user.profil_pic;
     }
-    return `${conf.server}/${conf.directory.profil}/${userPP}`;
+    return `${conf.server}/${conf.directory.profile}/${userPP}`;
 };
 
 export default getProfilPic;

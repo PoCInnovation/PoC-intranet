@@ -15,7 +15,8 @@ export default objectType({
 			args: { searchRole: stringArg() },
 			resolve: (_, { searchRole }, ctx) => {
 				return ctx.prisma.role.findMany({
-					where: { name: searchRole },
+					// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+					where: { name: searchRole! },
 					include: { users: true },
 				});
 			},
@@ -26,7 +27,8 @@ export default objectType({
 			args: { searchProject: stringArg() },
 			resolve: (_, { searchProject }, ctx) => {
 				return ctx.prisma.project.findMany({
-					where: { name: searchProject },
+					// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+					where: { name: searchProject! },
 					include: { users: true },
 				});
 			},

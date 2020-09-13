@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import styled from "styled-components";
-import ProfilHead from "./header";
+import ProfileHead from "./header";
 import ContentBlock from "./content_block";
 import getCookie from "../../get_cookie";
 import getUserInfoFromMSGraph from "../../request/call_ms_api";
@@ -11,17 +11,18 @@ const StyledProfilBlock = styled.div`
   flex-direction: column;
   align-items: center;
   width : 100%;
-  margin-left: 20%;
+  margin-left: 200px;
   box-sizing: border-box;
   margin-top: 10px;
   @media screen and (max-width: 700px), screen and (max-height: 500px) {
     width: 100%;
     margin-left: 0px;
     margin-top: 100px;
+    margin-left: 0;
   }
 `;
 
-class ProfilBlock extends Component {
+class ProfileBlock extends Component {
     async componentDidMount() {
         const token = getCookie('token');
 
@@ -39,7 +40,7 @@ class ProfilBlock extends Component {
     render() {
         return (
             <StyledProfilBlock>
-                <ProfilHead/>
+                <ProfileHead/>
                 <ContentBlock/>
             </StyledProfilBlock>
         );
@@ -48,4 +49,4 @@ class ProfilBlock extends Component {
 
 
 
-export default withRouter(ProfilBlock);
+export default withRouter(ProfileBlock);

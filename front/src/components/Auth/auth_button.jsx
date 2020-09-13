@@ -6,21 +6,26 @@ const StyledAuthButton = styled.button`
     display: flex;
     justify-content: space-between;
     justify-items: center;
+    align-items: center;
     text-align: center;
     flex-direction: column;
     flex-flow: column nowrap;
     
-    margin: 0 auto;
+    margin-top: 30px;
     padding: 10px;
     border-radius: 10px;
     border: 1.5px solid;
+    background-color: white;
+
+    @media screen and (max-width: 700px), screen and (max-height: 500px) {
+          width: 70%;
+    }
  
     img {
       justify-content: center;
       justify-items: center;
       width: 70%;
       height: 70%;
-      margin-left: calc(100% - 85%);
     }
 `;
 

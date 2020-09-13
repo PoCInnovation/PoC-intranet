@@ -10,10 +10,9 @@ import getUsername from "../../request/get_username";
 import registerUser from "../../request/registerUser";
 
 const StyledLogo = styled.img`
+    display: flex;
     width: 100px;
     height: 100px;
-    
-    margin: 0 auto;
 `;
 
 const LogoPoc = () => {
@@ -31,21 +30,41 @@ const StyledAuthBlock = styled.div`
     }
     
     height: auto;
-    width: 30vw;
+    width: 100%;
     min-width: 250px;
     max-width: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     justify-items: center;
     flex-flow: column nowrap;
-    margin: 35vh auto;
 `;
 
 const StyledErrorMessage = styled.p`
     text-align: center;
     color: #e74c3c;
     font-weight: 600;
+`;
+
+const AuthContainer = styled.div`
+    display: flex;
+    width: 100%;
+    height: 100;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 30vh;
+`;
+
+const MicroContainer = styled.div`
+    display: flex;
+
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding-left: 30%;
 `;
 
 
@@ -75,7 +94,7 @@ class AuthBlock extends Component {
         if (!userInfo.error) {
             const log = await this.loadData(userInfo);
             if (!log) {
-                this.props.history.push('/profil');
+                //this.props.history.push('/profil');
             }
         }
     }
@@ -111,15 +130,20 @@ class AuthBlock extends Component {
 
     render() {
         return (
-            <StyledAuthBlock>
-                <LogoPoc/>
-                <MicrosoftLogin clientId={config.client_id}
-                                authCallback={(err, data) => {
-                                    this.authHandler(err, data).then();
-                                }}
-                                children={AuthButton()}/>
-                {this.renderFail(this.state.valid)}
-            </StyledAuthBlock>
+            <AuthContainer>
+                <StyledAuthBlock>
+                    <LogoPoc />
+                    <MicroContainer>
+                        <MicrosoftLogin
+                            clientId={config.client_id}
+                            authCallback={(err, data) => {
+                                this.authHandler(err, data).then();
+                            }}
+                            children={AuthButton()} />
+                        {this.renderFail(this.state.valid)}
+                    </MicroContainer>
+                </StyledAuthBlock>
+            </AuthContainer>
         );
     }
 }

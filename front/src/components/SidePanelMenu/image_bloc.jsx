@@ -10,8 +10,7 @@ const StyledImageBloc = styled.div`
 
     @media screen and (max-width: 700px), screen and (max-height: 500px) {
         flex-direction: row;
-        justify-content: space-between;
-    }
+    }   
 `;
 
 const ImageBloc = () => {

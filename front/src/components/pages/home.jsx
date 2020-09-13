@@ -11,25 +11,13 @@ const StyledContainer = styled.div`
         flex-direction: column;
     }
 `;
-
-const SideContainer = styled.div`
-    display: flex;
-    position: fixed;
-    width: 20%;
-    @media screen and (max-width: 700px), screen and (max-height: 500px) {
-        width: 0px; 
-    }
-`
-
 const HomeContainer = () => {
     return (
       <StyledContainer>
-          <SideContainer>
-            <SidePanel/>
-          </SideContainer>
-          <ProfilBlock/>
+        <SidePanel/>
+        <ProfilBlock/>
       </StyledContainer>
     );
-}
+};
 
 export default HomeContainer;

@@ -13,23 +13,37 @@ const StyledMenu = styled.div`
     background: #ffffff;
     flex-direction: column;
     grid-row-gap: 22.5%;
-    align-items: center;
     width: 100%;
     box-shadow: 1px 0 25px rgba(0, 0, 0, 0.25);
-     @media screen and (max-width: 700px), screen and (max-height: 500px) {
-         flex-direction: column;
-         position: fixed;
-         top: 0;
-         left: 0;
+    @media screen and (max-width: 700px), screen and (max-height: 500px) {
+        height: 10%;
+        flex-direction: column;
+        position: fixed;
+        align-items: center;
+        top: 0;
+        left: 0;
+    }
+`;
+
+const PanelContainer = styled.div`
+    display: flex;
+    position: fixed;
+    width: 15%;
+    left: 0px;
+    height: 100%;
+    @media screen and (max-width: 700px), screen and (max-height: 500px) {
+        width: 0px; 
     }
 `;
 
 function SidePanel() {
     return (
-        <StyledMenu>
-            <ImageBloc/>
-            <BurgerMenu/>
-        </StyledMenu>
+        <PanelContainer>
+            <StyledMenu>
+                <ImageBloc />
+                <BurgerMenu />
+            </StyledMenu>
+        </PanelContainer>
     );
 }
 

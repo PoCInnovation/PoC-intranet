@@ -5,6 +5,10 @@ const StyledLogo = styled.img`
     display: flex;
     width: 100px;
     height: 100px;
+    @media screen and (max-width: 700px), screen and (max-height: 500px) {
+        top: -100px;
+        left: 50vh;
+    }
 `;
 
 const Logo = () => {

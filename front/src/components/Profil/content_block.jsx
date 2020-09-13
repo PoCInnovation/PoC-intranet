@@ -38,7 +38,7 @@ const ContentBlock = () => {
     <StyledContentBlock>
       <StyledTitle> Projets </StyledTitle>
       <ProjectBlock projects={projects}/>
-      <StyledTitle>Teammates</StyledTitle>
+      <StyledTitle>Team mates</StyledTitle>
       <TeamMatesBlock projects={projects}/>
     </StyledContentBlock>
   )

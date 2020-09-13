@@ -12,14 +12,6 @@ const StyledContainer = styled.div`
     }
 `;
 
-const SideContainer = styled.div`
-    display: flex;
-    position: fixed;
-    width: 20%;
-    height: 100%;
-    left: 0px;
-`;
-
 const ProjectContainer = styled.div`
 display: flex;
 flex-direction: column;
@@ -54,9 +46,7 @@ const Usename = styled.div`
 function ProjectPage() {
     return (
         <StyledContainer>
-            <SideContainer>
-                <SidePanel />
-            </SideContainer>
+            <SidePanel />
             <ProjectContainer>
                 <User>
                     Bienvenue,
